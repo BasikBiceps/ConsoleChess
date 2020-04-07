@@ -149,6 +149,9 @@
   <ItemGroup>
     <ClCompile Include="ConsoleChess.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="IDrawn.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
