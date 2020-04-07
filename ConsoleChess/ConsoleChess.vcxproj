@@ -148,9 +148,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleChess.cpp" />
+    <ClCompile Include="Figure.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Figure.h" />
+    <ClInclude Include="FigureColor.h" />
     <ClInclude Include="IDrawn.h" />
+    <ClInclude Include="IFigureBehavior.h" />
+    <ClInclude Include="FigurePosition.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
