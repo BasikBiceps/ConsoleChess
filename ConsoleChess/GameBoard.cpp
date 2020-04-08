@@ -2,6 +2,7 @@
 #include "GameBoardConfiguration.h"
 
 #include <iostream>
+#include <algorithm>
 
 GameBoard::GameBoard()
 {
@@ -17,17 +18,58 @@ const std::vector<Figure>& GameBoard::getFigures() const
 	return *(m_figures.get());
 }
 
-std::shared_ptr<Figure> GameBoard::findFigureByPosition(const FigurePosition& position) const
+std::vector<Figure>::iterator GameBoard::findFigureByPosition(const FigurePosition& position)
 {
-	for (auto& el : *m_figures) 
+	auto resultIteartor = m_figures->begin();
+
+	for (; resultIteartor != getFigures().end(); ++resultIteartor)
 	{
-		if (el.getPosition() == position)
+		if ((*resultIteartor).getPosition() == position)
 		{
-			return std::make_shared<Figure>(el);
+			return resultIteartor;
 		}
 	}
 
-	return nullptr;
+	return resultIteartor;
+}
+
+std::vector<Figure>::const_iterator GameBoard::findFigureByPosition(const FigurePosition& position) const
+{
+	auto resultIteartor = m_figures->begin();
+
+	for (; resultIteartor != getFigures().end(); ++resultIteartor)
+	{
+		if ((*resultIteartor).getPosition() == position)
+		{
+			return resultIteartor;
+		}
+	}
+
+	return resultIteartor;
+}
+
+void GameBoard::moveFigure(const FigurePosition& whereIs, const FigurePosition& whereTo)
+{
+	auto figureIter = findFigureByPosition(whereIs);
+
+	if (figureIter != m_figures->end())
+	{
+		figureIter->setPosition(whereTo);
+	}
+}
+
+void GameBoard::beatFigure(const FigurePosition& whereIs, const FigurePosition& whereTo)
+{
+	auto moveFigureIter = findFigureByPosition(whereIs);
+	auto beatFigureIter = findFigureByPosition(whereIs);
+
+	if (moveFigureIter == m_figures->end() || beatFigureIter == m_figures->end())
+	{
+		return;
+	}
+
+	moveFigureIter->setPosition(whereTo);
+	removeFigure(beatFigureIter);
 }
 
 void GameBoard::draw() const
@@ -42,7 +84,7 @@ void GameBoard::draw() const
 		{
 			auto figure = findFigureByPosition(FigurePosition({ j, i }));
 
-			if (figure == nullptr)
+			if (figure == m_figures->end())
 			{
 				std::cout << GameBoardConfiguration::getEmptyCell() << GameBoardConfiguration::getCellSeparator();
 			}
@@ -57,4 +99,9 @@ void GameBoard::draw() const
 		std::cout << GameBoardConfiguration::getLineSeparator() << std::endl;
 	}
 	std::cout << GameBoardConfiguration::getBoardPanel() << std::endl;
+}
+
+void GameBoard::removeFigure(std::vector<Figure>::iterator elementIter)
+{
+	m_figures->erase(elementIter);
 }

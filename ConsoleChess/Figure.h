@@ -16,10 +16,12 @@ public:
 		   const FigureColor& color, 
 		   std::shared_ptr<IFigureBeatBehavior> beatBehavior,
 		   std::shared_ptr<IFigureMoveBehavior> moveBehavior);
+	
+	void setPosition(const FigurePosition& position);
 
 	std::shared_ptr<std::vector<FigurePosition>> getMoveTrace() const;
 	std::shared_ptr<std::vector<FigurePosition>> getBeatTrace() const;
-	FigurePosition& getPosition();
+	const FigurePosition& getPosition() const;
 
 	void draw() const override final;
 

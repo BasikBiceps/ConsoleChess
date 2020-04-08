@@ -15,6 +15,11 @@ Figure::Figure(const std::string& name,
 {
 }
 
+void Figure::setPosition(const FigurePosition& position)
+{
+	m_position = position;
+}
+
 std::shared_ptr<std::vector<FigurePosition>> Figure::getMoveTrace() const
 {
 	return m_moveBehavior->move(m_position, m_color);
@@ -25,7 +30,7 @@ std::shared_ptr<std::vector<FigurePosition>> Figure::getBeatTrace() const
 	return m_beatBehavior->beat(m_position, m_color);
 }
 
-FigurePosition& Figure::getPosition()
+const FigurePosition& Figure::getPosition() const
 {
 	return m_position;
 }

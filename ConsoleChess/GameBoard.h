@@ -14,13 +14,15 @@ public:
 
 	const std::vector<Figure>& getFigures() const;
 	
-	bool isFigureOnBoard(const FigurePosition& position, const std::string& figureName, FigureColor figurecolor);
-	std::shared_ptr<Figure> findFigureByPosition(const FigurePosition& position) const;
+	std::vector<Figure>::iterator findFigureByPosition(const FigurePosition& position);
+	std::vector<Figure>::const_iterator findFigureByPosition(const FigurePosition& position) const;
 
 	void moveFigure(const FigurePosition& whereIs, const FigurePosition& whereTo);
 	void beatFigure(const FigurePosition& whereIs, const FigurePosition& whereTo);
 
 	void draw() const override final;
+
+	void removeFigure(std::vector<Figure>::iterator elementIter);
 
 private:
 	std::unique_ptr<std::vector<Figure>> m_figures;

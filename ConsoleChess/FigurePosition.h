@@ -6,8 +6,8 @@ struct FigurePosition
 	std::size_t x;
 	std::size_t y;
 
-	bool operator == (const FigurePosition& right)
+	bool operator == (const FigurePosition& other) const
 	{
-		return x == right.x && y == right.y;
+		return x == other.x && y == other.y;
 	}
 };
