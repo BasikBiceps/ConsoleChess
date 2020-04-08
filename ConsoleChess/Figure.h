@@ -8,6 +8,16 @@
 #include "FigureColor.h"
 #include "IFigureBeatBehavior.h"
 
+namespace NameOfFigures
+{
+	const std::string Pawn = "WP";
+	const std::string King = "WK";
+	const std::string Queen = "WQ";
+	const std::string Rook = "WR";
+	const std::string Knight = "WN";
+	const std::string Bishop = "WB";
+}
+
 class Figure : public IDrawn
 {
 public:

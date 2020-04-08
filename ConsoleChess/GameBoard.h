@@ -12,6 +12,8 @@ public:
 	GameBoard();
 	GameBoard(std::unique_ptr<std::vector<Figure>> figures);
 
+	void addFigureOnBoard(Figure& figure);
+
 	const std::vector<Figure>& getFigures() const;
 	
 	std::vector<Figure>::iterator findFigureByPosition(const FigurePosition& position);

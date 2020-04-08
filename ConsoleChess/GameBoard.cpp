@@ -2,7 +2,6 @@
 #include "GameBoardConfiguration.h"
 
 #include <iostream>
-#include <algorithm>
 
 GameBoard::GameBoard()
 {
@@ -11,6 +10,11 @@ GameBoard::GameBoard()
 
 GameBoard::GameBoard(std::unique_ptr<std::vector<Figure>> figures) : m_figures(std::move(figures))
 {
+}
+
+void GameBoard::addFigureOnBoard(Figure& figure)
+{
+	m_figures->push_back(figure);
 }
 
 const std::vector<Figure>& GameBoard::getFigures() const

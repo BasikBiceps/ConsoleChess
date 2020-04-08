@@ -148,23 +148,35 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleChess.cpp" />
+    <ClCompile Include="ConsoleReader.cpp" />
     <ClCompile Include="Figure.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameBoard.cpp" />
     <ClCompile Include="GameBoardConfiguration.cpp" />
+    <ClCompile Include="GameRules.cpp" />
     <ClCompile Include="PawnBeatBehavior.cpp" />
     <ClCompile Include="PawnMoveBehavior.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Step.cpp" />
+    <ClCompile Include="StepHistory.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConsoleReader.h" />
     <ClInclude Include="Figure.h" />
     <ClInclude Include="FigureColor.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="GameBoard.h" />
     <ClInclude Include="GameBoardConfiguration.h" />
+    <ClInclude Include="GameRules.h" />
     <ClInclude Include="IDrawn.h" />
     <ClInclude Include="IFigureBeatBehavior.h" />
     <ClInclude Include="IFigureMoveBehavior.h" />
     <ClInclude Include="FigurePosition.h" />
     <ClInclude Include="PawnBeatBehavior.h" />
     <ClInclude Include="PawnMoveBehavior.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Step.h" />
+    <ClInclude Include="StepHistory.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

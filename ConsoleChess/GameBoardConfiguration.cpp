@@ -4,6 +4,7 @@
 #include "PawnBeatBehavior.h"
 #include "PawnMoveBehavior.h"
 
+
 constexpr std::size_t kWhiteYStartPosition = 1;
 constexpr std::size_t kBlackYStartPosition = 6;
 
@@ -13,7 +14,7 @@ std::unique_ptr<std::vector<Figure>> GameBoardConfiguration::getStartFigurePosit
 
 	for (std::size_t i = 0; i < kBoardWidth; ++i)
 	{
-		result->push_back(Figure("WP", 
+		result->push_back(Figure(NameOfFigures::Pawn, 
 			{i,kWhiteYStartPosition},
 			FigureColor::White,
 			std::make_shared<PawnBeatBehavior>(),
@@ -22,7 +23,7 @@ std::unique_ptr<std::vector<Figure>> GameBoardConfiguration::getStartFigurePosit
 
 	for (std::size_t i = 0; i < kBoardWidth; ++i)
 	{
-		result->push_back(Figure("WP",
+		result->push_back(Figure(NameOfFigures::Pawn,
 			{ i,kBlackYStartPosition },
 			FigureColor::Black,
 			std::make_shared<PawnBeatBehavior>(),
