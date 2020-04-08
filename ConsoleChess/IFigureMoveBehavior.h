@@ -1,9 +1,12 @@
 #pragma once
+#include <vector>
+#include <memory>
+
 #include "FigurePosition.h"
 #include "FigureColor.h"
 
 class IFigureMoveBehavior
 {
 public:
-	virtual bool move(const FigurePosition& whereIs, const FigurePosition& whereTo, const FigureColor& color) const = 0;
+	virtual std::shared_ptr<std::vector<FigurePosition>> move(const FigurePosition& whereIs, const FigureColor& color) const = 0;
 };

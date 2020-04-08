@@ -149,7 +149,8 @@
   <ItemGroup>
     <ClCompile Include="ConsoleChess.cpp" />
     <ClCompile Include="Figure.cpp" />
-    <ClCompile Include="PawnBehavior.cpp" />
+    <ClCompile Include="PawnBeatBehavior.cpp" />
+    <ClCompile Include="PawnMoveBehavior.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Figure.h" />
@@ -158,7 +159,8 @@
     <ClInclude Include="IFigureBeatBehavior.h" />
     <ClInclude Include="IFigureMoveBehavior.h" />
     <ClInclude Include="FigurePosition.h" />
-    <ClInclude Include="PawnBehavior.h" />
+    <ClInclude Include="PawnBeatBehavior.h" />
+    <ClInclude Include="PawnMoveBehavior.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

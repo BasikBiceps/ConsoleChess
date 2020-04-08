@@ -1,12 +1,12 @@
 #pragma once
+#include <string>
+#include <memory>
+
 #include "FigurePosition.h"
 #include "IDrawn.h"
 #include "IFigureMoveBehavior.h"
 #include "FigureColor.h"
 #include "IFigureBeatBehavior.h"
-
-#include <string>
-#include <memory>
 
 class Figure : public IDrawn
 {
@@ -17,12 +17,10 @@ public:
 		   std::shared_ptr<IFigureBeatBehavior> beatBehavior,
 		   std::shared_ptr<IFigureMoveBehavior> moveBehavior);
 
-	bool move(const FigurePosition& whereTo) const;
-	bool beat(const FigurePosition& whereTo) const;
+	std::shared_ptr<std::vector<FigurePosition>> getMoveTrace() const;
+	std::shared_ptr<std::vector<FigurePosition>> getBeatTrace() const;
 
 	void draw() const override final;
-	std::size_t getPixelWidth() const override final;
-	std::size_t getPixelHeight() const override final;
 
 private:
 	std::string m_name;

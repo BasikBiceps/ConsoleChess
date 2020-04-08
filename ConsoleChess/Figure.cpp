@@ -2,8 +2,6 @@
 
 #include "Figure.h"
 
-constexpr std::size_t kNameHeight = 1;
-
 Figure::Figure(const std::string& name,
 	const FigurePosition& position,
 	const FigureColor& color,
@@ -17,27 +15,17 @@ Figure::Figure(const std::string& name,
 {
 }
 
-bool Figure::move(const FigurePosition& whereTo) const
+std::shared_ptr<std::vector<FigurePosition>> Figure::getMoveTrace() const
 {
-	return m_moveBehavior->move(m_position, whereTo, m_color);
+	return m_moveBehavior->move(m_position, m_color);
 }
 
-bool Figure::beat(const FigurePosition& whereTo) const
+std::shared_ptr<std::vector<FigurePosition>> Figure::getBeatTrace() const
 {
-	return m_beatBehavior->beat(m_position, whereTo, m_color);
+	return m_beatBehavior->beat(m_position, m_color);
 }
 
 void Figure::draw() const
 {
 	std::cout << m_name;
-}
-
-std::size_t Figure::getPixelWidth() const
-{
-	return m_name.length();
-}
-
-std::size_t Figure::getPixelHeight() const
-{
-	return kNameHeight;
 }
