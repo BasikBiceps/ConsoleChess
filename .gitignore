@@ -3,5 +3,4 @@ Release/
 .vs/
 ConsoleChess/Debug/
 ConsoleChess/Release/
-*.vcxproj.filters
 *.vcxproj.user

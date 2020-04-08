@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Interfaces">
+      <UniqueIdentifier>{ab14b95f-b189-4fcf-a88d-b7a4febbd83e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Figures">
+      <UniqueIdentifier>{0b691724-9356-4d4d-8ecc-f2cd859cd8d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Figures\Figure">
+      <UniqueIdentifier>{5506373a-a478-46e5-8b59-a8734354161f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Figures\FigureBehavior">
+      <UniqueIdentifier>{ee5f0a7a-fa03-4c98-8a6f-088b33bbe14c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Figures\Figure\headers">
+      <UniqueIdentifier>{d17b991a-f8a7-4a5d-bca2-8cd481552375}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Figures\Figure\sources">
+      <UniqueIdentifier>{bf90b2f5-dd3f-4bb3-bd41-cd7bf70155a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Figures\FigureBehavior\Pawn">
+      <UniqueIdentifier>{35c0c253-d3ea-4a91-ab86-ab41e72bfc01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Figures\FigureBehavior\Pawn\headers">
+      <UniqueIdentifier>{53e3bcf8-48ad-44cf-b01a-f2d52b62ad78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Figures\FigureBehavior\Pawn\sources">
+      <UniqueIdentifier>{4fb9862a-4a84-4d48-b6d2-f0c37eaf7f78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameBoard">
+      <UniqueIdentifier>{0307e8ef-731b-46fe-9b36-b2bc1af50429}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameBoard\headers">
+      <UniqueIdentifier>{5b5418be-e82d-4346-80d0-9cae7e049714}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameBoard\sources">
+      <UniqueIdentifier>{a42fc3db-129d-4ec0-be5f-7ea954eafe8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{5059a6db-ac8a-46ad-8b67-ea9e257c55c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\headers">
+      <UniqueIdentifier>{03cb4e50-ef23-48c6-8366-d2d02236ffbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\sources">
+      <UniqueIdentifier>{a89bd1f0-1d3a-4616-ba8e-a2db84c50a76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StepHistory">
+      <UniqueIdentifier>{5da6fad1-05d5-4124-893b-682ff74212d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StepHistory\headers">
+      <UniqueIdentifier>{43f9a76e-fca5-4b84-a88e-d2d86d776d86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StepHistory\sources">
+      <UniqueIdentifier>{f7057eb4-c2c2-4935-a29e-6ffd054eb611}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ConsoleChess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure.cpp">
+      <Filter>Figures\Figure\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="PawnMoveBehavior.cpp">
+      <Filter>Figures\FigureBehavior\Pawn\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="PawnBeatBehavior.cpp">
+      <Filter>Figures\FigureBehavior\Pawn\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBoardConfiguration.cpp">
+      <Filter>GameBoard\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBoard.cpp">
+      <Filter>GameBoard\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Game\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Step.cpp">
+      <Filter>StepHistory\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="StepHistory.cpp">
+      <Filter>StepHistory\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Game\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="GameRules.cpp">
+      <Filter>Game\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleReader.cpp">
+      <Filter>Game\sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="IDrawn.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="FigurePosition.h">
+      <Filter>Figures\Figure\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure.h">
+      <Filter>Figures\Figure\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FigureColor.h">
+      <Filter>Figures\Figure\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="IFigureBeatBehavior.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IFigureMoveBehavior.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="PawnMoveBehavior.h">
+      <Filter>Figures\FigureBehavior\Pawn\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PawnBeatBehavior.h">
+      <Filter>Figures\FigureBehavior\Pawn\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBoardConfiguration.h">
+      <Filter>GameBoard\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBoard.h">
+      <Filter>GameBoard\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Game\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Step.h">
+      <Filter>StepHistory\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="StepHistory.h">
+      <Filter>StepHistory\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Game\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameRules.h">
+      <Filter>Game\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleReader.h">
+      <Filter>Game\headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
