@@ -149,12 +149,16 @@
   <ItemGroup>
     <ClCompile Include="ConsoleChess.cpp" />
     <ClCompile Include="Figure.cpp" />
+    <ClCompile Include="GameBoard.cpp" />
+    <ClCompile Include="GameBoardConfiguration.cpp" />
     <ClCompile Include="PawnBeatBehavior.cpp" />
     <ClCompile Include="PawnMoveBehavior.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Figure.h" />
     <ClInclude Include="FigureColor.h" />
+    <ClInclude Include="GameBoard.h" />
+    <ClInclude Include="GameBoardConfiguration.h" />
     <ClInclude Include="IDrawn.h" />
     <ClInclude Include="IFigureBeatBehavior.h" />
     <ClInclude Include="IFigureMoveBehavior.h" />

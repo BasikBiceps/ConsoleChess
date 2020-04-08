@@ -25,6 +25,11 @@ std::shared_ptr<std::vector<FigurePosition>> Figure::getBeatTrace() const
 	return m_beatBehavior->beat(m_position, m_color);
 }
 
+FigurePosition& Figure::getPosition()
+{
+	return m_position;
+}
+
 void Figure::draw() const
 {
 	std::cout << m_name;

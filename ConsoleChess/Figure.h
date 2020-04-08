@@ -19,6 +19,7 @@ public:
 
 	std::shared_ptr<std::vector<FigurePosition>> getMoveTrace() const;
 	std::shared_ptr<std::vector<FigurePosition>> getBeatTrace() const;
+	FigurePosition& getPosition();
 
 	void draw() const override final;
 
