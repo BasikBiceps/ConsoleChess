@@ -36,6 +36,7 @@ FigureColor& Game::getFigureColor()
 
 void Game::start()
 {
+	std::cin.ignore();
 	while (m_isPlay)
 	{
 		std::cin.clear();

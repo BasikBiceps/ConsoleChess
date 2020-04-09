@@ -9,6 +9,8 @@
 #include "RookMoveBehavior.h"
 #include "QueenBeatBehavior.h"
 #include "QueenMoveBehavior.h"
+#include "KingBeatBehavior.h"
+#include "KingMoveBehavior.h"
 
 const std::string kBoardPanel = "  a  b  c  d  e  f  g  h  ";
 const std::string kCellSeparator = "|";
@@ -33,6 +35,9 @@ constexpr FigurePosition kRookBlackRightStandartPosition = { 7, 7 };
 constexpr FigurePosition kQueenWhiteStandartPosition = { 3, 0 };
 constexpr FigurePosition kQueenBlackStandartPosition = { 3, 7 };
 
+constexpr FigurePosition kKingWhiteStandartPosition = { 4, 0 };
+constexpr FigurePosition kKingBlackStandartPosition = { 4, 7 };
+
 std::unique_ptr<std::vector<Figure>> GameBoardConfiguration::getStartFigurePositions()
 {
 	auto result = std::make_unique<std::vector<Figure>>();
@@ -41,6 +46,7 @@ std::unique_ptr<std::vector<Figure>> GameBoardConfiguration::getStartFigurePosit
 	createBishops(*result.get());
 	createRooks(*result.get());
 	createQueens(*result.get());
+	createKings(*result.get());
 
 	return result;
 }
@@ -153,4 +159,19 @@ void GameBoardConfiguration::createQueens(std::vector<Figure>& figures)
 		FigureColor::Black,
 		std::make_shared<QueenBeatBehavior>(),
 		std::make_shared<QueenMoveBehavior>()));
+}
+
+void GameBoardConfiguration::createKings(std::vector<Figure>& figures)
+{
+	figures.push_back(Figure(NameOfFigures::King,
+		kKingWhiteStandartPosition,
+		FigureColor::White,
+		std::make_shared<KingBeatBehavior>(),
+		std::make_shared<KingMoveBehavior>()));
+
+	figures.push_back(Figure(NameOfFigures::King,
+		kKingBlackStandartPosition,
+		FigureColor::Black,
+		std::make_shared<KingBeatBehavior>(),
+		std::make_shared<KingMoveBehavior>()));
 }

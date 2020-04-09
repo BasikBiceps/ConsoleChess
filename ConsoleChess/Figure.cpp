@@ -10,7 +10,7 @@ Figure::Figure(const std::string& name,
 	const FigureColor& color,
 	std::shared_ptr<IFigureBeatBehavior> beatBehavior,
 	std::shared_ptr<IFigureMoveBehavior> moveBehavior) :
-	m_name(name), 
+	m_name(name),
 	m_position(position),
 	m_color(color),
 	m_moveBehavior(moveBehavior),
@@ -21,6 +21,22 @@ Figure::Figure(const std::string& name,
 void Figure::setPosition(const FigurePosition& position)
 {
 	m_position = position;
+}
+
+std::string Figure::getIndicator() const
+{
+	std::string colorIndicator;
+
+	if (m_color == FigureColor::White)
+	{
+		colorIndicator = kWhiteFigureIndicator;
+	}
+	else
+	{
+		colorIndicator =  kBlackFigureIndicator;
+	}
+
+	return colorIndicator + m_name;
 }
 
 std::shared_ptr<std::vector<FigurePosition>> Figure::getMoveTrace() const
@@ -40,12 +56,5 @@ const FigurePosition& Figure::getPosition() const
 
 void Figure::draw() const
 {
-	if (m_color == FigureColor::White)
-	{
-		std::cout << kWhiteFigureIndicator << m_name;
-	}
-	else
-	{
-		std::cout << kBlackFigureIndicator << m_name;
-	}
+	std::cout << getIndicator();
 }

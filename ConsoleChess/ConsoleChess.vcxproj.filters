@@ -90,6 +90,15 @@
     <Filter Include="Figures\FigureBehavior\Queen\sources">
       <UniqueIdentifier>{b5cbd8b8-3161-4591-accd-9ab92e10b1da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Figures\FigureBehavior\King">
+      <UniqueIdentifier>{41d98124-a393-4d39-8113-96ce19589f69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Figures\FigureBehavior\King\headers">
+      <UniqueIdentifier>{4b562dc2-0d52-4bb3-9a9a-366a0d688188}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Figures\FigureBehavior\King\sources">
+      <UniqueIdentifier>{d772c500-7719-42dc-83ad-58211579fb2c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleChess.cpp">
@@ -145,6 +154,12 @@
     </ClCompile>
     <ClCompile Include="QueenMoveBehavior.cpp">
       <Filter>Figures\FigureBehavior\Queen\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="KingMoveBehavior.cpp">
+      <Filter>Figures\FigureBehavior\King\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="KingBeatBehavior.cpp">
+      <Filter>Figures\FigureBehavior\King\sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +231,12 @@
     </ClInclude>
     <ClInclude Include="QueenMoveBehavior.h">
       <Filter>Figures\FigureBehavior\Queen\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="KingMoveBehavior.h">
+      <Filter>Figures\FigureBehavior\King\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="KingBeatBehavior.h">
+      <Filter>Figures\FigureBehavior\King\headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
