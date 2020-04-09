@@ -159,6 +159,8 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="BishopBeatBehavior.cpp" />
     <ClCompile Include="BishopMoveBehavior.cpp" />
+    <ClCompile Include="QueenBeatBehavior.cpp" />
+    <ClCompile Include="QueenMoveBehavior.cpp" />
     <ClCompile Include="RookBeatBehavior.cpp" />
     <ClCompile Include="RookMoveBehavior.cpp" />
     <ClCompile Include="Step.cpp" />
@@ -182,6 +184,8 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="BishopBeatBehavior.h" />
     <ClInclude Include="BishopMoveBehavior.h" />
+    <ClInclude Include="QueenBeatBehavior.h" />
+    <ClInclude Include="QueenMoveBehavior.h" />
     <ClInclude Include="RookBeatBehavior.h" />
     <ClInclude Include="RookMoveBehavior.h" />
     <ClInclude Include="Step.h" />

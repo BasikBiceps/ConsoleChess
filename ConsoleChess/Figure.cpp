@@ -2,6 +2,9 @@
 
 #include "Figure.h"
 
+const std::string kWhiteFigureIndicator = "W";
+const std::string kBlackFigureIndicator = "B";
+
 Figure::Figure(const std::string& name,
 	const FigurePosition& position,
 	const FigureColor& color,
@@ -37,5 +40,12 @@ const FigurePosition& Figure::getPosition() const
 
 void Figure::draw() const
 {
-	std::cout << m_name;
+	if (m_color == FigureColor::White)
+	{
+		std::cout << kWhiteFigureIndicator << m_name;
+	}
+	else
+	{
+		std::cout << kBlackFigureIndicator << m_name;
+	}
 }

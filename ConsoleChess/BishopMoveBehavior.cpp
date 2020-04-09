@@ -14,17 +14,17 @@ std::shared_ptr<std::vector<FigurePosition>> BishopMoveBehavior::move(const Figu
 		resultTrace->push_back({ static_cast<std::size_t>(x), static_cast<std::size_t>(y) });
 	}
 
-	for (std::size_t x = whereIs.x + 1, y = whereIs.y + 1; (x <= kXRightEndPosition) && (y <= kWhiteYEndPosition); ++x, ++y)
+	for (int x = whereIs.x + 1, y = whereIs.y + 1; (x <= kXRightEndPosition) && (y <= kWhiteYEndPosition); ++x, ++y)
 	{
 		resultTrace->push_back({ static_cast<std::size_t>(x), static_cast<std::size_t>(y) });
 	}
 
-	for (std::size_t x = whereIs.x - 1, y = whereIs.y + 1; (x >= kXLeftEndPosition) && (y <= kWhiteYEndPosition); --x, ++y)
+	for (int x = whereIs.x - 1, y = whereIs.y + 1; (x >= kXLeftEndPosition) && (y <= kWhiteYEndPosition); --x, ++y)
 	{
 		resultTrace->push_back({ static_cast<std::size_t>(x), static_cast<std::size_t>(y) });
 	}
 
-	for (std::size_t x = whereIs.x + 1, y = whereIs.y - 1; (x <= kXRightEndPosition) && (y >= kBlackYEndPosition); ++x, --y)
+	for (int x = whereIs.x + 1, y = whereIs.y - 1; (x <= kXRightEndPosition) && (y >= kBlackYEndPosition); ++x, --y)
 	{
 		resultTrace->push_back({ static_cast<std::size_t>(x), static_cast<std::size_t>(y) });
 	}

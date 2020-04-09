@@ -21,6 +21,7 @@ private:
 	static void createRooks(std::vector<Figure>& figures);
 	static void createBishops(std::vector<Figure>& figures);
 	static void createPawns(std::vector<Figure>& figures);
+	static void createQueens(std::vector<Figure>& figures);
 };
 
 namespace BoardBorders {

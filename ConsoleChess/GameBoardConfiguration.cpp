@@ -7,6 +7,8 @@
 #include "BishopMoveBehavior.h"
 #include "RookBeatBehavior.h"
 #include "RookMoveBehavior.h"
+#include "QueenBeatBehavior.h"
+#include "QueenMoveBehavior.h"
 
 const std::string kBoardPanel = "  a  b  c  d  e  f  g  h  ";
 const std::string kCellSeparator = "|";
@@ -28,6 +30,9 @@ constexpr FigurePosition kRookWhiteRightStandartPosition = { 7, 0 };
 constexpr FigurePosition kRookBlackLeftStandartPosition = { 0, 7 };
 constexpr FigurePosition kRookBlackRightStandartPosition = { 7, 7 };
 
+constexpr FigurePosition kQueenWhiteStandartPosition = { 3, 0 };
+constexpr FigurePosition kQueenBlackStandartPosition = { 3, 7 };
+
 std::unique_ptr<std::vector<Figure>> GameBoardConfiguration::getStartFigurePositions()
 {
 	auto result = std::make_unique<std::vector<Figure>>();
@@ -35,6 +40,7 @@ std::unique_ptr<std::vector<Figure>> GameBoardConfiguration::getStartFigurePosit
 	createPawns(*result.get());
 	createBishops(*result.get());
 	createRooks(*result.get());
+	createQueens(*result.get());
 
 	return result;
 }
@@ -132,4 +138,19 @@ void GameBoardConfiguration::createPawns(std::vector<Figure>& figures)
 			std::make_shared<PawnBeatBehavior>(),
 			std::make_shared<PawnMoveBehavior>()));
 	}
+}
+
+void GameBoardConfiguration::createQueens(std::vector<Figure>& figures)
+{
+	figures.push_back(Figure(NameOfFigures::Queen,
+		kQueenWhiteStandartPosition,
+		FigureColor::White,
+		std::make_shared<QueenBeatBehavior>(),
+		std::make_shared<QueenMoveBehavior>()));
+
+	figures.push_back(Figure(NameOfFigures::Queen,
+		kQueenBlackStandartPosition,
+		FigureColor::Black,
+		std::make_shared<QueenBeatBehavior>(),
+		std::make_shared<QueenMoveBehavior>()));
 }
