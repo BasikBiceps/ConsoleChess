@@ -1,16 +1,15 @@
 #include "PawnMoveBehavior.h"
 #include "FigureColor.h"
+#include "GameBoardConfiguration.h"
 
 constexpr std::size_t kWhiteYStartPosition = 1;
 constexpr std::size_t kBlackYStartPosition = 6;
-constexpr std::size_t kWhiteYEndPosition = 7;
-constexpr std::size_t kBlackYEndPosition = 0;
 
 std::shared_ptr<std::vector<FigurePosition>> PawnMoveBehavior::move(const FigurePosition& whereIs, const FigureColor& color) const
 {
 	auto resultTrace = std::make_shared<std::vector<FigurePosition>>();
 
-	if (whereIs.y == kWhiteYEndPosition || whereIs.y == kBlackYEndPosition)
+	if (whereIs.y == BoardBorders::kWhiteYEndPosition || whereIs.y == BoardBorders::kBlackYEndPosition)
 	{
 		return resultTrace;
 	}

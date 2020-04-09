@@ -105,6 +105,11 @@ void GameBoard::draw() const
 	std::cout << GameBoardConfiguration::getBoardPanel() << std::endl;
 }
 
+void GameBoard::reset()
+{
+	m_figures = GameBoardConfiguration::getStartFigurePositions();
+}
+
 void GameBoard::removeFigure(std::vector<Figure>::iterator elementIter)
 {
 	m_figures->erase(elementIter);

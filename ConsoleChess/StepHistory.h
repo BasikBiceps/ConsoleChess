@@ -10,6 +10,7 @@ public:
 	std::stack<Step>& getSteps();
 
 	void addStep(Step& step);
+	void reset();
 	void undoLastStep(GameBoard& gameBoard);
 
 private:

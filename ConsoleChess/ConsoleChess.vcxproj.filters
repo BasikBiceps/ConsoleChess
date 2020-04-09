@@ -98,7 +98,7 @@
     <ClCompile Include="GameRules.cpp">
       <Filter>Game\sources</Filter>
     </ClCompile>
-    <ClCompile Include="ConsoleReader.cpp">
+    <ClCompile Include="CommandHandler.cpp">
       <Filter>Game\sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -148,8 +148,11 @@
     <ClInclude Include="GameRules.h">
       <Filter>Game\headers</Filter>
     </ClInclude>
-    <ClInclude Include="ConsoleReader.h">
+    <ClInclude Include="CommandHandler.h">
       <Filter>Game\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ICommandHandler.h">
+      <Filter>Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

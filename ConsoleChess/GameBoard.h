@@ -23,10 +23,10 @@ public:
 	void beatFigure(const FigurePosition& whereIs, const FigurePosition& whereTo);
 
 	void draw() const override final;
+	void reset();
 
 	void removeFigure(std::vector<Figure>::iterator elementIter);
 
 private:
 	std::unique_ptr<std::vector<Figure>> m_figures;
 };
-

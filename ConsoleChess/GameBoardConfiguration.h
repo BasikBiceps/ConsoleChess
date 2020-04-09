@@ -18,3 +18,9 @@ public:
 	static const std::size_t kBoardHeight = 8;
 };
 
+namespace BoardBorders {
+	constexpr std::size_t kXLeftEndPosition = 0;
+	constexpr std::size_t kXRightEndPosition = GameBoardConfiguration::kBoardWidth - 1;
+	constexpr std::size_t kWhiteYEndPosition = GameBoardConfiguration::kBoardHeight - 1;
+	constexpr std::size_t kBlackYEndPosition = 0;
+};

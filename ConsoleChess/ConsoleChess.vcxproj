@@ -147,8 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CommandHandler.cpp" />
     <ClCompile Include="ConsoleChess.cpp" />
-    <ClCompile Include="ConsoleReader.cpp" />
     <ClCompile Include="Figure.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameBoard.cpp" />
@@ -161,13 +161,14 @@
     <ClCompile Include="StepHistory.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ConsoleReader.h" />
+    <ClInclude Include="CommandHandler.h" />
     <ClInclude Include="Figure.h" />
     <ClInclude Include="FigureColor.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameBoard.h" />
     <ClInclude Include="GameBoardConfiguration.h" />
     <ClInclude Include="GameRules.h" />
+    <ClInclude Include="ICommandHandler.h" />
     <ClInclude Include="IDrawn.h" />
     <ClInclude Include="IFigureBeatBehavior.h" />
     <ClInclude Include="IFigureMoveBehavior.h" />

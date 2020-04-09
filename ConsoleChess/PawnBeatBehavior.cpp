@@ -1,26 +1,22 @@
 #include "PawnBeatBehavior.h"
-
-constexpr std::size_t kXLeftEndPosition = 0;
-constexpr std::size_t kXRightEndPosition = 7;
-constexpr std::size_t kWhiteYEndPosition = 7;
-constexpr std::size_t kBlackYEndPosition = 0;
+#include "GameBoardConfiguration.h"
 
 std::shared_ptr<std::vector<FigurePosition>> PawnBeatBehavior::beat(const FigurePosition& whereIs, const FigureColor& color) const
 {
 	auto resultTrace = std::make_shared<std::vector<FigurePosition>>();
 
-	if (whereIs.y == kWhiteYEndPosition || whereIs.y == kBlackYEndPosition)
+	if (whereIs.y == BoardBorders::kWhiteYEndPosition || whereIs.y == BoardBorders::kBlackYEndPosition)
 	{
 		return resultTrace;
 	}
 
 	if (color == FigureColor::White)
 	{
-		if (whereIs.x == kXLeftEndPosition)
+		if (whereIs.x == BoardBorders::kXLeftEndPosition)
 		{
 			resultTrace->push_back({ whereIs.x + 1, whereIs.y + 1 });
 		}
-		else if (whereIs.x == kXRightEndPosition)
+		else if (whereIs.x == BoardBorders::kXRightEndPosition)
 		{
 			resultTrace->push_back({ whereIs.x - 1, whereIs.y + 1 });
 		}
@@ -32,11 +28,11 @@ std::shared_ptr<std::vector<FigurePosition>> PawnBeatBehavior::beat(const Figure
 	}
 	else
 	{
-		if (whereIs.x == kXLeftEndPosition)
+		if (whereIs.x == BoardBorders::kXLeftEndPosition)
 		{
 			resultTrace->push_back({ whereIs.x + 1, whereIs.y - 1 });
 		}
-		else if (whereIs.x == kXRightEndPosition)
+		else if (whereIs.x == BoardBorders::kXRightEndPosition)
 		{
 			resultTrace->push_back({ whereIs.x - 1, whereIs.y - 1 });
 		}
