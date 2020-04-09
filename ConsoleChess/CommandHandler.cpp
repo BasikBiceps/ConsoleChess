@@ -4,6 +4,14 @@
 
 #include "CommandHandler.h"
 
+const std::string kIncorrectPositionFormatMessage = "Incorrect position format.";
+const std::string kIncorrectStringLengthMessage = "Incorrect string length.";
+const std::string kHelpCommandMessage = " - to show all commands with description;";
+const std::string kFinishCommandMessage = " - to finish game and exit;";
+const std::string kMoveCommandMessage = " - to move figure (example: " + Commands::move + " b2 b4);";
+const std::string kBeatCommandMessage = " - to beat enemy figure (example: " + Commands::beat + " b2 b4);";
+const std::string kRestartCommandMessage = " - to restart game;";
+
 CommandHandler::CommandHandler(Game& game) : m_game(game)
 {
 }
@@ -95,23 +103,23 @@ void CommandHandler::handle(const std::string& command)
 
 void CommandHandler::printCommands() const
 {
-	std::cout << Commands::help << " - to show all commands with description;" << std::endl;
-	std::cout << Commands::move << " - to move figure (example: " << Commands::move << " b2 b4);" << std::endl;
-	std::cout << Commands::beat << " - to beat enemy figure (example: " << Commands::beat << " b2 b4);" << std::endl;
-	std::cout << Commands::finish << " - to finish game and exit;" << std::endl;
-	std::cout << Commands::restart << " - to restart game;" << std::endl;
+	std::cout << Commands::help << kHelpCommandMessage << std::endl;
+	std::cout << Commands::move << kMoveCommandMessage << std::endl;
+	std::cout << Commands::beat << kBeatCommandMessage << std::endl;
+	std::cout << Commands::finish << kFinishCommandMessage << std::endl;
+	std::cout << Commands::restart << kRestartCommandMessage << std::endl;
 }
 
 FigurePosition CommandHandler::convertToFigurePosition(std::string& str)
 {
 	if (str.length() != 2)
 	{
-		throw std::runtime_error("Incorrect position string length.");
+		throw std::runtime_error(kIncorrectStringLengthMessage);
 	}
 
 	if (!std::isalpha(str[0]) || !std::isdigit(str[1]))
 	{
-		throw std::runtime_error("Incorrect position format.");
+		throw std::runtime_error(kIncorrectPositionFormatMessage);
 	}
 
 	str[0] = std::tolower(str[0]);

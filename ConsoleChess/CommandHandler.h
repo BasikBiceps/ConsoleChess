@@ -13,8 +13,8 @@ namespace Commands
 	const std::string restart = "/restart";
 	const std::string finish = "/finish";
 
-	const std::size_t kMoveParams = 2;
-	const std::size_t kBeatParams = 2;
+	constexpr std::size_t kMoveParams = 2;
+	constexpr std::size_t kBeatParams = 2;
 
 	const std::string error = "Incorrect command!";
 	const std::string errorInParams = "Incorrect command params!";

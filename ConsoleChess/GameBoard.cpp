@@ -110,6 +110,12 @@ void GameBoard::reset()
 	m_figures = GameBoardConfiguration::getStartFigurePositions();
 }
 
+bool GameBoard::isValidPosition(const FigurePosition& position)
+{
+	return (position.x < GameBoardConfiguration::kBoardWidth && position.x >= 0) &&
+		   (position.y < GameBoardConfiguration::kBoardHeight && position.y >= 0);
+}
+
 void GameBoard::removeFigure(std::vector<Figure>::iterator elementIter)
 {
 	m_figures->erase(elementIter);

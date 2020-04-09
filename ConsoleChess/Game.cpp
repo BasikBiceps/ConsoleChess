@@ -3,6 +3,13 @@
 #include "CommandHandler.h"
 #include "Game.h"
 
+const std::string kGameResetMessage = "The game was reset.";
+const std::string kGameOverMessage = "The game was over.";
+const std::string kEnterCommandMessage = "Enter command: ";
+const std::string kHelpMessage = "If you need help /help";
+const std::string kWhiteSideMessage = "           White          ";
+const std::string kBlackSideMessage = "           Black          ";
+
 Game::Game(const Player& firstPlayer, const Player& secondPlayer) :
 	m_firstPlayer(firstPlayer),
 	m_secondPlayer(secondPlayer),
@@ -31,14 +38,16 @@ void Game::start()
 {
 	while (m_isPlay)
 	{
-		std::string command;
+		std::cin.clear();
+		std::string command = "/help";
 
-		std::cout << "           White          " << std::endl;
+		std::cout << kWhiteSideMessage << std::endl;
 		m_gameBoard.draw();
-		std::cout << "           Black          " << std::endl;
+ 		std::cout << kBlackSideMessage << std::endl;
 
-		std::cout << "If you need help /help" << std::endl;
-		std::cout << "Enter command: ";
+		std::cout << kHelpMessage << std::endl;
+		std::cout << kEnterCommandMessage;
+		std::cin.ignore();
 		std::getline(std::cin, command);
 
 		m_commandHandler->handle(command);
@@ -53,13 +62,13 @@ void Game::restart()
 	m_gameBoard.reset();
 	m_stepHistory.reset();
 	m_priorityOfMove = FigureColor::White;
-	std::cout << "The game was reset." << std::endl;
+	std::cout << kGameResetMessage << std::endl;
 }
 
 void Game::finish()
 {
 	m_isPlay = false;
-	std::cout << "The game was over." << std::endl;
+	std::cout << kGameOverMessage << std::endl;
 }
 
 void Game::move(FigurePosition& whereIs, FigurePosition& whereTo)

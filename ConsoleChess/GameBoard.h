@@ -25,6 +25,8 @@ public:
 	void draw() const override final;
 	void reset();
 
+	bool isValidPosition(const FigurePosition& position);
+
 	void removeFigure(std::vector<Figure>::iterator elementIter);
 
 private:
