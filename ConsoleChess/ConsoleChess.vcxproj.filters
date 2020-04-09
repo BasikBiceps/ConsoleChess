@@ -63,14 +63,23 @@
     <Filter Include="StepHistory\sources">
       <UniqueIdentifier>{f7057eb4-c2c2-4935-a29e-6ffd054eb611}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Figures\FigureBehavior\Rook">
+    <Filter Include="Figures\FigureBehavior\Bishop">
       <UniqueIdentifier>{49f9e15b-2f3c-48f5-a105-f58c90e3edc9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Figures\FigureBehavior\Rook\headers">
+    <Filter Include="Figures\FigureBehavior\Bishop\headers">
       <UniqueIdentifier>{13dd1ddb-e4de-4646-ac48-69e76dab6e08}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Figures\FigureBehavior\Rook\sources">
+    <Filter Include="Figures\FigureBehavior\Bishop\sources">
       <UniqueIdentifier>{4ba520fc-6f19-4286-bb04-32f838215396}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Figures\FigureBehavior\Rook">
+      <UniqueIdentifier>{894c0ac5-195e-4587-9cea-6b57c29d70d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Figures\FigureBehavior\Rook\headers">
+      <UniqueIdentifier>{c7a50b8f-155d-40c3-be44-af7bb4ccff50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Figures\FigureBehavior\Rook\sources">
+      <UniqueIdentifier>{843e715d-e2c8-455a-8bf2-397f16d4afc5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -111,9 +120,15 @@
       <Filter>Game\sources</Filter>
     </ClCompile>
     <ClCompile Include="BishopBeatBehavior.cpp">
-      <Filter>Figures\FigureBehavior\Rook\sources</Filter>
+      <Filter>Figures\FigureBehavior\Bishop\sources</Filter>
     </ClCompile>
     <ClCompile Include="BishopMoveBehavior.cpp">
+      <Filter>Figures\FigureBehavior\Bishop\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="RookBeatBehavior.cpp">
+      <Filter>Figures\FigureBehavior\Rook\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="RookMoveBehavior.cpp">
       <Filter>Figures\FigureBehavior\Rook\sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -170,9 +185,15 @@
       <Filter>Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="BishopBeatBehavior.h">
-      <Filter>Figures\FigureBehavior\Rook\headers</Filter>
+      <Filter>Figures\FigureBehavior\Bishop\headers</Filter>
     </ClInclude>
     <ClInclude Include="BishopMoveBehavior.h">
+      <Filter>Figures\FigureBehavior\Bishop\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="RookBeatBehavior.h">
+      <Filter>Figures\FigureBehavior\Rook\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="RookMoveBehavior.h">
       <Filter>Figures\FigureBehavior\Rook\headers</Filter>
     </ClInclude>
   </ItemGroup>

@@ -16,6 +16,11 @@ public:
 
 	static const std::size_t kBoardWidth = 8;
 	static const std::size_t kBoardHeight = 8;
+
+private:
+	static void createRooks(std::vector<Figure>& figures);
+	static void createBishops(std::vector<Figure>& figures);
+	static void createPawns(std::vector<Figure>& figures);
 };
 
 namespace BoardBorders {
