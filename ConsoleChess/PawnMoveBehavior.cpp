@@ -2,8 +2,8 @@
 #include "FigureColor.h"
 #include "GameBoardConfiguration.h"
 
-constexpr std::size_t kWhiteYStartPosition = 1;
-constexpr std::size_t kBlackYStartPosition = 6;
+constexpr std::size_t kWhitePawnYStartPosition = 1;
+constexpr std::size_t kBlackPawnYStartPosition = 6;
 
 std::shared_ptr<std::vector<FigurePosition>> PawnMoveBehavior::move(const FigurePosition& whereIs, const FigureColor& color) const
 {
@@ -18,7 +18,7 @@ std::shared_ptr<std::vector<FigurePosition>> PawnMoveBehavior::move(const Figure
 	{
 		resultTrace->push_back({ whereIs.x, whereIs.y + 1 });
 
-		if (whereIs.y == kWhiteYStartPosition)
+		if (whereIs.y == kWhitePawnYStartPosition)
 		{
 			resultTrace->push_back({ whereIs.x, whereIs.y + 2 });
 		} 
@@ -27,7 +27,7 @@ std::shared_ptr<std::vector<FigurePosition>> PawnMoveBehavior::move(const Figure
 	{
 		resultTrace->push_back({ whereIs.x, whereIs.y - 1 });
 
-		if (whereIs.y == kBlackYStartPosition)
+		if (whereIs.y == kBlackPawnYStartPosition)
 		{
 			resultTrace->push_back({ whereIs.x, whereIs.y - 2 });
 		}

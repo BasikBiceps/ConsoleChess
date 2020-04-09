@@ -63,6 +63,15 @@
     <Filter Include="StepHistory\sources">
       <UniqueIdentifier>{f7057eb4-c2c2-4935-a29e-6ffd054eb611}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Figures\FigureBehavior\Rook">
+      <UniqueIdentifier>{49f9e15b-2f3c-48f5-a105-f58c90e3edc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Figures\FigureBehavior\Rook\headers">
+      <UniqueIdentifier>{13dd1ddb-e4de-4646-ac48-69e76dab6e08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Figures\FigureBehavior\Rook\sources">
+      <UniqueIdentifier>{4ba520fc-6f19-4286-bb04-32f838215396}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleChess.cpp">
@@ -100,6 +109,12 @@
     </ClCompile>
     <ClCompile Include="CommandHandler.cpp">
       <Filter>Game\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="BishopBeatBehavior.cpp">
+      <Filter>Figures\FigureBehavior\Rook\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="BishopMoveBehavior.cpp">
+      <Filter>Figures\FigureBehavior\Rook\sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +168,12 @@
     </ClInclude>
     <ClInclude Include="ICommandHandler.h">
       <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="BishopBeatBehavior.h">
+      <Filter>Figures\FigureBehavior\Rook\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="BishopMoveBehavior.h">
+      <Filter>Figures\FigureBehavior\Rook\headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

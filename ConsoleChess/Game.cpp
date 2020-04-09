@@ -47,7 +47,6 @@ void Game::start()
 
 		std::cout << kHelpMessage << std::endl;
 		std::cout << kEnterCommandMessage;
-		std::cin.ignore();
 		std::getline(std::cin, command);
 
 		m_commandHandler->handle(command);
