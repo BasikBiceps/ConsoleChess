@@ -156,6 +156,8 @@
     <ClCompile Include="GameRules.cpp" />
     <ClCompile Include="KingBeatBehavior.cpp" />
     <ClCompile Include="KingMoveBehavior.cpp" />
+    <ClCompile Include="KnightBeatBehavior.cpp" />
+    <ClCompile Include="KnightMoveBehavior.cpp" />
     <ClCompile Include="PawnBeatBehavior.cpp" />
     <ClCompile Include="PawnMoveBehavior.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -183,6 +185,8 @@
     <ClInclude Include="FigurePosition.h" />
     <ClInclude Include="KingBeatBehavior.h" />
     <ClInclude Include="KingMoveBehavior.h" />
+    <ClInclude Include="KnightBeatBehavior.h" />
+    <ClInclude Include="KnightMoveBehavior.h" />
     <ClInclude Include="PawnBeatBehavior.h" />
     <ClInclude Include="PawnMoveBehavior.h" />
     <ClInclude Include="Player.h" />

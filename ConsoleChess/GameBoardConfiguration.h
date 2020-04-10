@@ -23,6 +23,7 @@ private:
 	static void createPawns(std::vector<Figure>& figures);
 	static void createQueens(std::vector<Figure>& figures);
 	static void createKings(std::vector<Figure>& figures);
+	static void createKnights(std::vector<Figure>& figures);
 };
 
 namespace BoardBorders {

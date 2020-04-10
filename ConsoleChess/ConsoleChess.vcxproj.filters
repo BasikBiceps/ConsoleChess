@@ -99,6 +99,15 @@
     <Filter Include="Figures\FigureBehavior\King\sources">
       <UniqueIdentifier>{d772c500-7719-42dc-83ad-58211579fb2c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Figures\FigureBehavior\Knight">
+      <UniqueIdentifier>{3531d288-d325-458b-900b-8d499a1251d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Figures\FigureBehavior\Knight\headers">
+      <UniqueIdentifier>{c9029ad6-f850-42a2-b565-83add92c85d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Figures\FigureBehavior\Knight\sources">
+      <UniqueIdentifier>{4a5b798e-65d6-4239-8548-e0b3d1905e08}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleChess.cpp">
@@ -160,6 +169,12 @@
     </ClCompile>
     <ClCompile Include="KingBeatBehavior.cpp">
       <Filter>Figures\FigureBehavior\King\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="KnightBeatBehavior.cpp">
+      <Filter>Figures\FigureBehavior\Knight\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="KnightMoveBehavior.cpp">
+      <Filter>Figures\FigureBehavior\Knight\sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -237,6 +252,12 @@
     </ClInclude>
     <ClInclude Include="KingBeatBehavior.h">
       <Filter>Figures\FigureBehavior\King\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="KnightBeatBehavior.h">
+      <Filter>Figures\FigureBehavior\Knight\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="KnightMoveBehavior.h">
+      <Filter>Figures\FigureBehavior\Knight\headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

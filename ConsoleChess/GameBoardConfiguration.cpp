@@ -11,6 +11,8 @@
 #include "QueenMoveBehavior.h"
 #include "KingBeatBehavior.h"
 #include "KingMoveBehavior.h"
+#include "KnightBeatBehavior.h"
+#include "KnightMoveBehavior.h"
 
 const std::string kBoardPanel = "  a  b  c  d  e  f  g  h  ";
 const std::string kCellSeparator = "|";
@@ -38,6 +40,12 @@ constexpr FigurePosition kQueenBlackStandartPosition = { 3, 7 };
 constexpr FigurePosition kKingWhiteStandartPosition = { 4, 0 };
 constexpr FigurePosition kKingBlackStandartPosition = { 4, 7 };
 
+constexpr FigurePosition kKnightWhiteLeftStandartPosition = { 1, 0 };
+constexpr FigurePosition kKnightWhiteRightStandartPosition = { 6, 0 };
+
+constexpr FigurePosition kKnightBlackLeftStandartPosition = { 1, 7 };
+constexpr FigurePosition kKnightBlackRightStandartPosition = { 6, 7 };
+
 std::unique_ptr<std::vector<Figure>> GameBoardConfiguration::getStartFigurePositions()
 {
 	auto result = std::make_unique<std::vector<Figure>>();
@@ -47,6 +55,7 @@ std::unique_ptr<std::vector<Figure>> GameBoardConfiguration::getStartFigurePosit
 	createRooks(*result.get());
 	createQueens(*result.get());
 	createKings(*result.get());
+	createKnights(*result.get());
 
 	return result;
 }
@@ -174,4 +183,31 @@ void GameBoardConfiguration::createKings(std::vector<Figure>& figures)
 		FigureColor::Black,
 		std::make_shared<KingBeatBehavior>(),
 		std::make_shared<KingMoveBehavior>()));
+}
+
+void GameBoardConfiguration::createKnights(std::vector<Figure>& figures)
+{
+	figures.push_back(Figure(NameOfFigures::Knight,
+		kKnightWhiteLeftStandartPosition,
+		FigureColor::White,
+		std::make_shared<KnightBeatBehavior>(),
+		std::make_shared<KnightMoveBehavior>()));
+
+	figures.push_back(Figure(NameOfFigures::Knight,
+		kKnightWhiteRightStandartPosition,
+		FigureColor::White,
+		std::make_shared<KnightBeatBehavior>(),
+		std::make_shared<KnightMoveBehavior>()));
+
+	figures.push_back(Figure(NameOfFigures::Knight,
+		kKnightBlackLeftStandartPosition,
+		FigureColor::Black,
+		std::make_shared<KnightBeatBehavior>(),
+		std::make_shared<KnightMoveBehavior>()));
+
+	figures.push_back(Figure(NameOfFigures::Knight,
+		kKnightBlackRightStandartPosition,
+		FigureColor::Black,
+		std::make_shared<KnightBeatBehavior>(),
+		std::make_shared<KnightMoveBehavior>()));
 }

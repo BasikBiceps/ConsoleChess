@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "Figure.h"
+#include "GameBoardConfiguration.h"
 
 const std::string kWhiteFigureIndicator = "W";
 const std::string kBlackFigureIndicator = "B";
@@ -33,7 +34,7 @@ std::string Figure::getIndicator() const
 	}
 	else
 	{
-		colorIndicator =  kBlackFigureIndicator;
+		colorIndicator = kBlackFigureIndicator;
 	}
 
 	return colorIndicator + m_name;
@@ -57,4 +58,10 @@ const FigurePosition& Figure::getPosition() const
 void Figure::draw() const
 {
 	std::cout << getIndicator();
+}
+
+bool Figure::isValidPosition(const FigurePosition& whereIs)
+{
+	return (whereIs.x >= BoardBorders::kXLeftEndPosition && whereIs.x <= BoardBorders::kXRightEndPosition) &&
+		(whereIs.y >= BoardBorders::kBlackYEndPosition && whereIs.y <= BoardBorders::kWhiteYEndPosition);
 }

@@ -37,6 +37,8 @@ public:
 
 	void draw() const override final;
 
+	static bool isValidPosition(const FigurePosition& whereIs);
+
 private:
 	std::string m_name;
 	FigurePosition m_position;
