@@ -30,7 +30,8 @@ public:
 	void setPosition(const FigurePosition& position);
 
 	std::string getIndicator() const;
-	std::string getName() const;
+	const std::string& getName() const;
+	const FigureColor& getColor() const;
 
 	std::shared_ptr<std::vector<FigurePosition>> getMoveTrace() const;
 	std::shared_ptr<std::vector<FigurePosition>> getBeatTrace() const;

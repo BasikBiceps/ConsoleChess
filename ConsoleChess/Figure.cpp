@@ -40,9 +40,14 @@ std::string Figure::getIndicator() const
 	return colorIndicator + m_name;
 }
 
-std::string Figure::getName() const
+const std::string& Figure::getName() const
 {
 	return m_name;
+}
+
+const FigureColor& Figure::getColor() const
+{
+	return m_color;
 }
 
 std::shared_ptr<std::vector<FigurePosition>> Figure::getMoveTrace() const

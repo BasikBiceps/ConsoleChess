@@ -8,10 +8,12 @@ const std::string kIncorrectTraceMessage = "Incorrect trace!";
 GameBoard::GameBoard()
 {
 	m_figures = GameBoardConfiguration::getStartFigurePositions();
+	updateFigureTraces();
 }
 
 GameBoard::GameBoard(std::unique_ptr<std::vector<Figure>> figures) : m_figures(std::move(figures))
 {
+	updateFigureTraces();
 }
 
 void GameBoard::addFigureOnBoard(Figure& figure)
@@ -58,7 +60,7 @@ std::shared_ptr<std::vector<FigurePosition>> GameBoard::getDependentOnOtherFigur
 
 std::shared_ptr<std::vector<FigurePosition>> GameBoard::getDependentOnOtherFiguresFigureBeatTrace(const Figure& figure) const
 {
-	auto trace = figure.getMoveTrace();
+	auto trace = figure.getBeatTrace();
 	auto result = std::make_shared<std::vector<FigurePosition>>();
 
 	if (figure.getName() == NameOfFigures::Knight)
@@ -75,6 +77,26 @@ std::shared_ptr<std::vector<FigurePosition>> GameBoard::getDependentOnOtherFigur
 	}
 
 	return result;
+}
+
+const std::vector<FigurePosition>& GameBoard::getWhiteFigureMoveTraces() const
+{
+	return m_whiteFigureMoveTraces;
+}
+
+const std::vector<FigurePosition>& GameBoard::getBlackFigureMoveTraces() const
+{
+	return m_blackFigureMoveTraces;
+}
+
+const std::vector<FigurePosition>& GameBoard::getWhiteFigureBeatTraces() const
+{
+	return m_whiteFigureBeatTraces;
+}
+
+const std::vector<FigurePosition>& GameBoard::getBlackFigureBeatTraces() const
+{
+	return m_blackFigureBeatTraces;
 }
 
 std::vector<Figure>::iterator GameBoard::findFigureByPosition(const FigurePosition& position)
@@ -165,6 +187,12 @@ void GameBoard::reset()
 	m_figures = GameBoardConfiguration::getStartFigurePositions();
 }
 
+void GameBoard::updateFigureTraces()
+{
+	updateBeatFigureTraces();
+	updateMoveFigureTraces();
+}
+
 bool GameBoard::isValidPosition(const FigurePosition& position) const
 {
 	return (position.x < GameBoardConfiguration::kBoardWidth && position.x >= 0) &&
@@ -249,7 +277,7 @@ bool GameBoard::isFigureOnDiagonal(const FigurePosition& whereIs, const FigurePo
 
 	if (from.y > to.y)
 	{
-		for (auto x = from.x + 1, y = from.y - 1; from != to; ++x, --y)
+		for (auto x = from.x + 1, y = from.y - 1; FigurePosition({ x,y }) != to; ++x, --y)
 		{
 			if (isFigureOnPosition({ x, y }))
 			{
@@ -259,7 +287,7 @@ bool GameBoard::isFigureOnDiagonal(const FigurePosition& whereIs, const FigurePo
 	}
 	else
 	{
-		for (auto x = from.x + 1, y = from.y + 1; from != to; ++x, ++y)
+		for (auto x = from.x + 1, y = from.y + 1; FigurePosition({x,y}) != to; ++x, ++y)
 		{
 			if (isFigureOnPosition({ x, y }))
 			{
@@ -269,4 +297,44 @@ bool GameBoard::isFigureOnDiagonal(const FigurePosition& whereIs, const FigurePo
 	}
 
 	return false;
+}
+
+void GameBoard::updateMoveFigureTraces()
+{
+	m_whiteFigureMoveTraces.clear();
+	m_blackFigureMoveTraces.clear();
+
+	for (auto figure : *m_figures)
+	{
+		auto moveTrace = getDependentOnOtherFiguresFigureMoveTrace(figure);
+
+		if (figure.getColor() == FigureColor::White)
+		{
+			std::copy(moveTrace->begin(), moveTrace->end(), std::back_inserter(m_whiteFigureMoveTraces));
+		}
+		else
+		{
+			std::copy(moveTrace->begin(), moveTrace->end(), std::back_inserter(m_blackFigureMoveTraces));
+		}
+	}
+}
+
+void GameBoard::updateBeatFigureTraces()
+{
+	m_blackFigureBeatTraces.clear();
+	m_whiteFigureBeatTraces.clear();
+
+	for (auto figure : *m_figures)
+	{
+		auto beatTrace = getDependentOnOtherFiguresFigureBeatTrace(figure);
+
+		if (figure.getColor() == FigureColor::White)
+		{
+			std::copy(beatTrace->begin(), beatTrace->end(), std::back_inserter(m_whiteFigureBeatTraces));
+		}
+		else
+		{
+			std::copy(beatTrace->begin(), beatTrace->end(), std::back_inserter(m_blackFigureBeatTraces));
+		}
+	}
 }
