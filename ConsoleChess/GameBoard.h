@@ -15,6 +15,7 @@ public:
 	void addFigureOnBoard(Figure& figure);
 
 	const std::vector<Figure>& getFigures() const;
+	std::shared_ptr<std::vector<FigurePosition>> getDependentOnOtherFiguresFigureMoveTrace(const Figure& figure);
 	
 	std::vector<Figure>::iterator findFigureByPosition(const FigurePosition& position);
 	std::vector<Figure>::const_iterator findFigureByPosition(const FigurePosition& position) const;
@@ -25,9 +26,16 @@ public:
 	void draw() const override final;
 	void reset();
 
-	bool isValidPosition(const FigurePosition& position);
+	bool isValidPosition(const FigurePosition& position) const;
+	bool isFigureOnPosition(const FigurePosition& position) const;
+	bool isFigureOnTrace(const FigurePosition& whereIs, const FigurePosition& whereTo) const;
 
 	void removeFigure(std::vector<Figure>::iterator elementIter);
+
+private:
+	bool isFigureOnVertical(const FigurePosition& whereIs, const FigurePosition& whereTo) const;
+	bool isFigureOnHorizontal(const FigurePosition& whereIs, const FigurePosition& whereTo) const;
+	bool isFigureOnDiagonal(const FigurePosition& whereIs, const FigurePosition& whereTo) const;
 
 private:
 	std::unique_ptr<std::vector<Figure>> m_figures;
