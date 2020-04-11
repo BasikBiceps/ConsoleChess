@@ -15,7 +15,8 @@ public:
 	void addFigureOnBoard(Figure& figure);
 
 	const std::vector<Figure>& getFigures() const;
-	std::shared_ptr<std::vector<FigurePosition>> getDependentOnOtherFiguresFigureMoveTrace(const Figure& figure);
+	std::shared_ptr<std::vector<FigurePosition>> getDependentOnOtherFiguresFigureMoveTrace(const Figure& figure) const;
+	std::shared_ptr<std::vector<FigurePosition>> getDependentOnOtherFiguresFigureBeatTrace(const Figure& figure) const;
 	
 	std::vector<Figure>::iterator findFigureByPosition(const FigurePosition& position);
 	std::vector<Figure>::const_iterator findFigureByPosition(const FigurePosition& position) const;

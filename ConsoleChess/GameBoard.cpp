@@ -24,7 +24,7 @@ const std::vector<Figure>& GameBoard::getFigures() const
 	return *(m_figures.get());
 }
 
-std::shared_ptr<std::vector<FigurePosition>> GameBoard::getDependentOnOtherFiguresFigureMoveTrace(const Figure& figure)
+std::shared_ptr<std::vector<FigurePosition>> GameBoard::getDependentOnOtherFiguresFigureMoveTrace(const Figure& figure) const
 {
 	auto trace = figure.getMoveTrace();
 	auto result = std::make_shared<std::vector<FigurePosition>>();
@@ -50,6 +50,27 @@ std::shared_ptr<std::vector<FigurePosition>> GameBoard::getDependentOnOtherFigur
 			{
 				result->push_back(position);
 			}
+		}
+	}
+
+	return result;
+}
+
+std::shared_ptr<std::vector<FigurePosition>> GameBoard::getDependentOnOtherFiguresFigureBeatTrace(const Figure& figure) const
+{
+	auto trace = figure.getMoveTrace();
+	auto result = std::make_shared<std::vector<FigurePosition>>();
+
+	if (figure.getName() == NameOfFigures::Knight)
+	{
+		return trace;
+	}
+
+	for (auto position : *trace)
+	{
+		if (!isFigureOnTrace(figure.getPosition(), position))
+		{
+			result->push_back(position);
 		}
 	}
 
