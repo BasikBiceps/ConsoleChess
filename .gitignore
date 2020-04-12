@@ -1,5 +1,6 @@
 Debug/
 Release/
+packages/
 .vs/
 ConsoleChess/Debug/
 ConsoleChess/Release/
