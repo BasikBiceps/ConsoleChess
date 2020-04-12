@@ -110,9 +110,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ConsoleChess.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Figure.cpp">
       <Filter>Figures\Figure\sources</Filter>
     </ClCompile>

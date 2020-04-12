@@ -130,9 +130,9 @@ void Game::move(const FigurePosition& whereIs, const FigurePosition& whereTo)
 		throw std::runtime_error(kPositionIsOccupiedMessage);
 	}
 
-	auto posibleTrace = m_gameBoard.getDependentOnOtherFiguresFigureMoveTrace(*whereIsFigure);
+	auto possibleTrace = m_gameBoard.getDependentOnOtherFiguresFigureMoveTrace(*whereIsFigure);
 
-	if (std::find(posibleTrace->begin(), posibleTrace->end(), whereTo) == posibleTrace->end())
+	if (std::find(possibleTrace->begin(), possibleTrace->end(), whereTo) == possibleTrace->end())
 	{
 		throw std::runtime_error(kWrongStepMessage);
 	}
@@ -233,9 +233,9 @@ void Game::beat(const FigurePosition& whereIs, const FigurePosition& whereTo)
 		throw std::runtime_error(kBeatEmptyPositionMessage);
 	}
 
-	auto posibleTrace = m_gameBoard.getDependentOnOtherFiguresFigureBeatTrace(*whereIsFigure);
+	auto possibleTrace = m_gameBoard.getDependentOnOtherFiguresFigureBeatTrace(*whereIsFigure);
 
-	if (std::find(posibleTrace->begin(), posibleTrace->end(), whereTo) == posibleTrace->end())
+	if (std::find(possibleTrace->begin(), possibleTrace->end(), whereTo) == possibleTrace->end())
 	{
 		if (!isBF || whereTo != getBeatenField(m_stepHistory.getLast()->getStartPosition(), m_stepHistory.getLast()->getEndPosition()))
 		{
@@ -420,9 +420,9 @@ void Game::turnPawn(const FigurePosition& whereIs, const FigurePosition& whereTo
 		throw std::runtime_error(kPositionIsOccupiedMessage);
 	}
 
-	auto posibleTrace = m_gameBoard.getDependentOnOtherFiguresFigureMoveTrace(*whereIsFigure);
+	auto possibleTrace = m_gameBoard.getDependentOnOtherFiguresFigureMoveTrace(*whereIsFigure);
 
-	if (std::find(posibleTrace->begin(), posibleTrace->end(), whereTo) == posibleTrace->end())
+	if (std::find(possibleTrace->begin(), possibleTrace->end(), whereTo) == possibleTrace->end())
 	{
 		throw std::runtime_error(kWrongStepMessage);
 	}
@@ -436,8 +436,8 @@ void Game::turnPawn(const FigurePosition& whereIs, const FigurePosition& whereTo
 		throw std::runtime_error(kWrongStepWithCheckMessage);
 	}
 
-	std::shared_ptr<IFigureBeatBehavior> newBeatBehavior = GameBoardConfiguration::createBeatBehavior(name);
-	std::shared_ptr<IFigureMoveBehavior> newMoveBehavior = GameBoardConfiguration::createMoveBehavior(name);
+    auto newBeatBehavior = GameBoardConfiguration::createBeatBehavior(name);
+    auto newMoveBehavior = GameBoardConfiguration::createMoveBehavior(name);
 
 	m_gameBoard.moveFigure(whereIs, whereTo);
 	m_stepHistory.addStep(std::make_shared<MoveStep>(std::make_shared<Figure>(*whereIsFigure), whereIs, whereTo));

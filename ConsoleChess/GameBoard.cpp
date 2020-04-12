@@ -151,32 +151,32 @@ const FigurePosition& GameBoard::getKingPosition(const FigureColor& color) const
 
 std::vector<Figure>::iterator GameBoard::findFigureByPosition(const FigurePosition& position)
 {
-	auto resultIteartor = m_figures->begin();
+	auto resultIterator = m_figures->begin();
 
-	for (; resultIteartor != getFigures().end(); ++resultIteartor)
+	for (; resultIterator != getFigures().end(); ++resultIterator)
 	{
-		if ((*resultIteartor).getPosition() == position)
+		if ((*resultIterator).getPosition() == position)
 		{
-			return resultIteartor;
+			return resultIterator;
 		}
 	}
 
-	return resultIteartor;
+	return resultIterator;
 }
 
 std::vector<Figure>::const_iterator GameBoard::findFigureByPosition(const FigurePosition& position) const
 {
-	auto resultIteartor = m_figures->begin();
+	auto resultIterator = m_figures->begin();
 
-	for (; resultIteartor != getFigures().end(); ++resultIteartor)
+	for (; resultIterator != getFigures().end(); ++resultIterator)
 	{
-		if ((*resultIteartor).getPosition() == position)
+		if ((*resultIterator).getPosition() == position)
 		{
-			return resultIteartor;
+			return resultIterator;
 		}
 	}
 
-	return resultIteartor;
+	return resultIterator;
 }
 
 void GameBoard::moveFigure(const FigurePosition& whereIs, const FigurePosition& whereTo)

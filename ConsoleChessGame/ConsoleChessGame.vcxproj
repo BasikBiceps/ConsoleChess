@@ -20,34 +20,32 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{808FC320-8D73-4DB9-9697-E936E2237DD8}</ProjectGuid>
-    <Keyword>Win32Proj</Keyword>
-    <RootNamespace>ConsoleChess</RootNamespace>
+    <ProjectGuid>{EDF8F798-203C-4946-8A63-5CEF717D264C}</ProjectGuid>
+    <RootNamespace>ConsoleChessGame</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>ConsoleChess</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -85,125 +83,74 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)\ConsoleChess;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ConsoleChess.lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)\ConsoleChess;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ConsoleChess.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)\ConsoleChess;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ConsoleChess.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)\ConsoleChess;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ConsoleChess.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BeatStep.cpp" />
-    <ClCompile Include="CastlingStep.cpp" />
-    <ClCompile Include="CommandHandler.cpp" />
-    <ClCompile Include="Figure.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameBoard.cpp" />
-    <ClCompile Include="GameBoardConfiguration.cpp" />
-    <ClCompile Include="GameRules.cpp" />
-    <ClCompile Include="KingBeatBehavior.cpp" />
-    <ClCompile Include="KingMoveBehavior.cpp" />
-    <ClCompile Include="KnightBeatBehavior.cpp" />
-    <ClCompile Include="KnightMoveBehavior.cpp" />
-    <ClCompile Include="MoveStep.cpp" />
-    <ClCompile Include="PawnBeatBehavior.cpp" />
-    <ClCompile Include="PawnMoveBehavior.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="BishopBeatBehavior.cpp" />
-    <ClCompile Include="BishopMoveBehavior.cpp" />
-    <ClCompile Include="QueenBeatBehavior.cpp" />
-    <ClCompile Include="QueenMoveBehavior.cpp" />
-    <ClCompile Include="RookBeatBehavior.cpp" />
-    <ClCompile Include="RookMoveBehavior.cpp" />
-    <ClCompile Include="Step.cpp" />
-    <ClCompile Include="StepHistory.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="BeatStep.h" />
-    <ClInclude Include="CastlingStep.h" />
-    <ClInclude Include="CommandHandler.h" />
-    <ClInclude Include="Figure.h" />
-    <ClInclude Include="FigureColor.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameBoard.h" />
-    <ClInclude Include="GameBoardConfiguration.h" />
-    <ClInclude Include="GameRules.h" />
-    <ClInclude Include="ICommandHandler.h" />
-    <ClInclude Include="IDrawn.h" />
-    <ClInclude Include="IFigureBeatBehavior.h" />
-    <ClInclude Include="IFigureMoveBehavior.h" />
-    <ClInclude Include="FigurePosition.h" />
-    <ClInclude Include="KingBeatBehavior.h" />
-    <ClInclude Include="KingMoveBehavior.h" />
-    <ClInclude Include="KnightBeatBehavior.h" />
-    <ClInclude Include="KnightMoveBehavior.h" />
-    <ClInclude Include="MoveStep.h" />
-    <ClInclude Include="PawnBeatBehavior.h" />
-    <ClInclude Include="PawnMoveBehavior.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="BishopBeatBehavior.h" />
-    <ClInclude Include="BishopMoveBehavior.h" />
-    <ClInclude Include="QueenBeatBehavior.h" />
-    <ClInclude Include="QueenMoveBehavior.h" />
-    <ClInclude Include="RookBeatBehavior.h" />
-    <ClInclude Include="RookMoveBehavior.h" />
-    <ClInclude Include="Step.h" />
-    <ClInclude Include="StepHistory.h" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

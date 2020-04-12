@@ -22,40 +22,40 @@ const std::string kLineSeparator = " ------------------------- ";
 constexpr std::size_t kWhitePawnYStartPosition = 1;
 constexpr std::size_t kBlackPawnYStartPosition = 6;
 
-constexpr FigurePosition kBishopWhiteLeftStandartPosition = { 2, 0 };
-constexpr FigurePosition kBishopWhiteRightStandartPosition = { 5, 0 };
+constexpr FigurePosition kBishopWhiteLeftStandardPosition = { 2, 0 };
+constexpr FigurePosition kBishopWhiteRightStandardPosition = { 5, 0 };
 
-constexpr FigurePosition kBishopBlackLeftStandartPosition = { 2, 7 };
-constexpr FigurePosition kBishopBlackRightStandartPosition = { 5, 7 };
+constexpr FigurePosition kBishopBlackLeftStandardPosition = { 2, 7 };
+constexpr FigurePosition kBishopBlackRightStandardPosition = { 5, 7 };
 
-constexpr FigurePosition kRookWhiteLeftStandartPosition = { 0, 0 };
-constexpr FigurePosition kRookWhiteRightStandartPosition = { 7, 0 };
+constexpr FigurePosition kRookWhiteLeftStandardPosition = { 0, 0 };
+constexpr FigurePosition kRookWhiteRightStandardPosition = { 7, 0 };
 
-constexpr FigurePosition kRookBlackLeftStandartPosition = { 0, 7 };
-constexpr FigurePosition kRookBlackRightStandartPosition = { 7, 7 };
+constexpr FigurePosition kRookBlackLeftStandardPosition = { 0, 7 };
+constexpr FigurePosition kRookBlackRightStandardPosition = { 7, 7 };
 
-constexpr FigurePosition kQueenWhiteStandartPosition = { 3, 0 };
-constexpr FigurePosition kQueenBlackStandartPosition = { 3, 7 };
+constexpr FigurePosition kQueenWhiteStandardPosition = { 3, 0 };
+constexpr FigurePosition kQueenBlackStandardPosition = { 3, 7 };
 
-constexpr FigurePosition kKingWhiteStandartPosition = { 4, 0 };
-constexpr FigurePosition kKingBlackStandartPosition = { 4, 7 };
+constexpr FigurePosition kKingWhiteStandardPosition = { 4, 0 };
+constexpr FigurePosition kKingBlackStandardPosition = { 4, 7 };
 
-constexpr FigurePosition kKnightWhiteLeftStandartPosition = { 1, 0 };
-constexpr FigurePosition kKnightWhiteRightStandartPosition = { 6, 0 };
+constexpr FigurePosition kKnightWhiteLeftStandardPosition = { 1, 0 };
+constexpr FigurePosition kKnightWhiteRightStandardPosition = { 6, 0 };
 
-constexpr FigurePosition kKnightBlackLeftStandartPosition = { 1, 7 };
-constexpr FigurePosition kKnightBlackRightStandartPosition = { 6, 7 };
+constexpr FigurePosition kKnightBlackLeftStandardPosition = { 1, 7 };
+constexpr FigurePosition kKnightBlackRightStandardPosition = { 6, 7 };
 
 std::unique_ptr<std::vector<Figure>> GameBoardConfiguration::getStartFigurePositions()
 {
 	auto result = std::make_unique<std::vector<Figure>>();
 
-	createPawns(*result.get());
-	createBishops(*result.get());
-	createRooks(*result.get());
-	createQueens(*result.get());
-	createKings(*result.get());
-	createKnights(*result.get());
+	createPawns(*result);
+	createBishops(*result);
+	createRooks(*result);
+	createQueens(*result);
+	createKings(*result);
+	createKnights(*result);
 
 	return result;
 }
@@ -142,63 +142,63 @@ std::shared_ptr<IFigureMoveBehavior> GameBoardConfiguration::createMoveBehavior(
 
 void GameBoardConfiguration::createRooks(std::vector<Figure>& figures)
 {
-	figures.push_back(Figure(NameOfFigures::Rook,
-		kRookWhiteLeftStandartPosition,
-		FigureColor::White,
-		std::make_shared<RookBeatBehavior>(),
-		std::make_shared<RookMoveBehavior>()));
+	figures.emplace_back(NameOfFigures::Rook,
+        kRookWhiteLeftStandardPosition,
+        FigureColor::White,
+        std::make_shared<RookBeatBehavior>(),
+        std::make_shared<RookMoveBehavior>());
 
-	figures.push_back(Figure(NameOfFigures::Rook,
-		kRookWhiteRightStandartPosition,
-		FigureColor::White,
-		std::make_shared<RookBeatBehavior>(),
-		std::make_shared<RookMoveBehavior>()));
+	figures.emplace_back(NameOfFigures::Rook,
+        kRookWhiteRightStandardPosition,
+        FigureColor::White,
+        std::make_shared<RookBeatBehavior>(),
+        std::make_shared<RookMoveBehavior>());
 
-	figures.push_back(Figure(NameOfFigures::Rook,
-		kRookBlackLeftStandartPosition,
-		FigureColor::Black,
-		std::make_shared<RookBeatBehavior>(),
-		std::make_shared<RookMoveBehavior>()));
+	figures.emplace_back(NameOfFigures::Rook,
+        kRookBlackLeftStandardPosition,
+        FigureColor::Black,
+        std::make_shared<RookBeatBehavior>(),
+        std::make_shared<RookMoveBehavior>());
 
-	figures.push_back(Figure(NameOfFigures::Rook,
-		kRookBlackRightStandartPosition,
-		FigureColor::Black,
-		std::make_shared<RookBeatBehavior>(),
-		std::make_shared<RookMoveBehavior>()));
+	figures.emplace_back(NameOfFigures::Rook,
+        kRookBlackRightStandardPosition,
+        FigureColor::Black,
+        std::make_shared<RookBeatBehavior>(),
+        std::make_shared<RookMoveBehavior>());
 }
 
 void GameBoardConfiguration::createBishops(std::vector<Figure>& figures)
 {
-	figures.push_back(Figure(NameOfFigures::Bishop,
-		kBishopWhiteLeftStandartPosition,
-		FigureColor::White,
-		std::make_shared<BishopBeatBehavior>(),
-		std::make_shared<BishopMoveBehavior>()));
+	figures.emplace_back(NameOfFigures::Bishop,
+        kBishopWhiteLeftStandardPosition,
+        FigureColor::White,
+        std::make_shared<BishopBeatBehavior>(),
+        std::make_shared<BishopMoveBehavior>());
 
-	figures.push_back(Figure(NameOfFigures::Bishop,
-		kBishopWhiteRightStandartPosition,
-		FigureColor::White,
-		std::make_shared<BishopBeatBehavior>(),
-		std::make_shared<BishopMoveBehavior>()));
+	figures.emplace_back(NameOfFigures::Bishop,
+        kBishopWhiteRightStandardPosition,
+        FigureColor::White,
+        std::make_shared<BishopBeatBehavior>(),
+        std::make_shared<BishopMoveBehavior>());
 
-	figures.push_back(Figure(NameOfFigures::Bishop,
-		kBishopBlackLeftStandartPosition,
-		FigureColor::Black,
-		std::make_shared<BishopBeatBehavior>(),
-		std::make_shared<BishopMoveBehavior>()));
+	figures.emplace_back(NameOfFigures::Bishop,
+        kBishopBlackLeftStandardPosition,
+        FigureColor::Black,
+        std::make_shared<BishopBeatBehavior>(),
+        std::make_shared<BishopMoveBehavior>());
 
-	figures.push_back(Figure(NameOfFigures::Bishop,
-		kBishopBlackRightStandartPosition,
-		FigureColor::Black,
-		std::make_shared<BishopBeatBehavior>(),
-		std::make_shared<BishopMoveBehavior>()));
+	figures.emplace_back(NameOfFigures::Bishop,
+        kBishopBlackRightStandardPosition,
+        FigureColor::Black,
+        std::make_shared<BishopBeatBehavior>(),
+        std::make_shared<BishopMoveBehavior>());
 }
 
 void GameBoardConfiguration::createPawns(std::vector<Figure>& figures)
 {
 	for (std::size_t i = 0; i < kBoardWidth; ++i)
 	{
-		figures.push_back(Figure(NameOfFigures::Pawn,
+		figures.emplace_back(Figure(NameOfFigures::Pawn,
 			{ i,kWhitePawnYStartPosition },
 			FigureColor::White,
 			std::make_shared<PawnBeatBehavior>(),
@@ -207,7 +207,7 @@ void GameBoardConfiguration::createPawns(std::vector<Figure>& figures)
 
 	for (std::size_t i = 0; i < kBoardWidth; ++i)
 	{
-		figures.push_back(Figure(NameOfFigures::Pawn,
+		figures.emplace_back(Figure(NameOfFigures::Pawn,
 			{ i,kBlackPawnYStartPosition },
 			FigureColor::Black,
 			std::make_shared<PawnBeatBehavior>(),
@@ -217,14 +217,14 @@ void GameBoardConfiguration::createPawns(std::vector<Figure>& figures)
 
 void GameBoardConfiguration::createQueens(std::vector<Figure>& figures)
 {
-	figures.push_back(Figure(NameOfFigures::Queen,
-		kQueenWhiteStandartPosition,
+	figures.emplace_back(Figure(NameOfFigures::Queen,
+		kQueenWhiteStandardPosition,
 		FigureColor::White,
 		std::make_shared<QueenBeatBehavior>(),
 		std::make_shared<QueenMoveBehavior>()));
 
-	figures.push_back(Figure(NameOfFigures::Queen,
-		kQueenBlackStandartPosition,
+	figures.emplace_back(Figure(NameOfFigures::Queen,
+		kQueenBlackStandardPosition,
 		FigureColor::Black,
 		std::make_shared<QueenBeatBehavior>(),
 		std::make_shared<QueenMoveBehavior>()));
@@ -232,14 +232,14 @@ void GameBoardConfiguration::createQueens(std::vector<Figure>& figures)
 
 void GameBoardConfiguration::createKings(std::vector<Figure>& figures)
 {
-	figures.push_back(Figure(NameOfFigures::King,
-		kKingWhiteStandartPosition,
+	figures.emplace_back(Figure(NameOfFigures::King,
+		kKingWhiteStandardPosition,
 		FigureColor::White,
 		std::make_shared<KingBeatBehavior>(),
 		std::make_shared<KingMoveBehavior>()));
 
-	figures.push_back(Figure(NameOfFigures::King,
-		kKingBlackStandartPosition,
+	figures.emplace_back(Figure(NameOfFigures::King,
+		kKingBlackStandardPosition,
 		FigureColor::Black,
 		std::make_shared<KingBeatBehavior>(),
 		std::make_shared<KingMoveBehavior>()));
@@ -247,26 +247,26 @@ void GameBoardConfiguration::createKings(std::vector<Figure>& figures)
 
 void GameBoardConfiguration::createKnights(std::vector<Figure>& figures)
 {
-	figures.push_back(Figure(NameOfFigures::Knight,
-		kKnightWhiteLeftStandartPosition,
+	figures.emplace_back(Figure(NameOfFigures::Knight,
+		kKnightWhiteLeftStandardPosition,
 		FigureColor::White,
 		std::make_shared<KnightBeatBehavior>(),
 		std::make_shared<KnightMoveBehavior>()));
 
-	figures.push_back(Figure(NameOfFigures::Knight,
-		kKnightWhiteRightStandartPosition,
+	figures.emplace_back(Figure(NameOfFigures::Knight,
+		kKnightWhiteRightStandardPosition,
 		FigureColor::White,
 		std::make_shared<KnightBeatBehavior>(),
 		std::make_shared<KnightMoveBehavior>()));
 
-	figures.push_back(Figure(NameOfFigures::Knight,
-		kKnightBlackLeftStandartPosition,
+	figures.emplace_back(Figure(NameOfFigures::Knight,
+		kKnightBlackLeftStandardPosition,
 		FigureColor::Black,
 		std::make_shared<KnightBeatBehavior>(),
 		std::make_shared<KnightMoveBehavior>()));
 
-	figures.push_back(Figure(NameOfFigures::Knight,
-		kKnightBlackRightStandartPosition,
+	figures.emplace_back(Figure(NameOfFigures::Knight,
+		kKnightBlackRightStandardPosition,
 		FigureColor::Black,
 		std::make_shared<KnightBeatBehavior>(),
 		std::make_shared<KnightMoveBehavior>()));

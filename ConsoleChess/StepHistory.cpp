@@ -7,7 +7,7 @@ std::vector<std::shared_ptr<Step>>& StepHistory::getSteps()
 
 bool StepHistory::isStep(const FigurePosition& startPosition)
 {
-	for (auto step : m_steps)
+	for (const auto& step : m_steps)
 	{
 		if (step->getStartPosition() == startPosition || step->getEndPosition() == startPosition)
 		{
@@ -20,7 +20,7 @@ bool StepHistory::isStep(const FigurePosition& startPosition)
 
 std::shared_ptr<Step> StepHistory::getLast()
 {
-	if (m_steps.size() > 0)
+	if (!m_steps.empty())
 	{
 		return m_steps[m_steps.size() - 1];
 	}
@@ -40,9 +40,9 @@ void StepHistory::reset()
 
 void StepHistory::undoLastStep(GameBoard& gameBoard)
 {
-	if (m_steps.size() > 0)
+	if (!m_steps.empty())
 	{
 		m_steps[m_steps.size() - 1]->undo(gameBoard);
-		m_steps.emplace_back();
+		m_steps.pop_back();
 	}
 }
