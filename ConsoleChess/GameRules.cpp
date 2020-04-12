@@ -1,6 +1,6 @@
 #include "GameRules.h"
 
-bool GameRules::isCheck(GameBoard& gameboard, FigureColor& figureColor)
+bool GameRules::isCheck(GameBoard& gameboard, const FigureColor& figureColor)
 {
 	auto kingPosition = gameboard.getKingPosition(figureColor);
 	auto king = gameboard.findFigureByPosition(kingPosition);
@@ -24,17 +24,17 @@ bool GameRules::isCheck(GameBoard& gameboard, FigureColor& figureColor)
 	}
 }
 
-bool GameRules::isCheckmate(GameBoard& gameboard, FigureColor& figureColor)
+bool GameRules::isCheckmate(GameBoard& gameboard, const FigureColor& figureColor)
 {
 	return isCheck(gameboard, figureColor) && !isCorrectStep(gameboard, figureColor);
 }
 
-bool GameRules::isStalemate(GameBoard& gameboard, FigureColor& figureColor)
+bool GameRules::isStalemate(GameBoard& gameboard, const FigureColor& figureColor)
 {
 	return !isCheck(gameboard, figureColor) && !isCorrectStep(gameboard, figureColor);
 }
 
-bool GameRules::isCorrectStep(GameBoard& gameboard, FigureColor& figureColor)
+bool GameRules::isCorrectStep(GameBoard& gameboard, const FigureColor& figureColor)
 {
 	for (auto& figure : gameboard.getFigures())
 	{

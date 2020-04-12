@@ -9,7 +9,7 @@ bool StepHistory::isStep(const FigurePosition& startPosition)
 {
 	for (auto step : m_steps)
 	{
-		if (step->getStartPosition() == startPosition)
+		if (step->getStartPosition() == startPosition || step->getEndPosition() == startPosition)
 		{
 			return true;
 		}

@@ -12,6 +12,7 @@ namespace Commands
 	const std::string beat = "/beat";
 	const std::string restart = "/restart";
 	const std::string finish = "/finish";
+	const std::string castle = "/castle";
 
 	constexpr std::size_t kMoveParams = 2;
 	constexpr std::size_t kBeatParams = 2;

@@ -6,6 +6,7 @@
 #include "MoveStep.h"
 #include "BeatStep.h"
 #include "PawnMoveBehavior.h"
+#include "CastlingStep.h"
 
 const std::string kGameResetMessage = "The game was reset.";
 const std::string kGameOverMessage = "The game was over.";
@@ -101,7 +102,7 @@ void Game::setPriorityOfMove()
 	}
 }
 
-void Game::move(FigurePosition& whereIs, FigurePosition& whereTo)
+void Game::move(const FigurePosition& whereIs, const FigurePosition& whereTo)
 {
 	auto whereIsFigure = m_gameBoard.findFigureByPosition(whereIs);
 	auto whereToFigure = m_gameBoard.findFigureByPosition(whereTo);
@@ -139,8 +140,43 @@ void Game::move(FigurePosition& whereIs, FigurePosition& whereTo)
 
 	m_gameBoard.moveFigure(whereIs, whereTo);
 	m_stepHistory.addStep(std::make_shared<MoveStep>(std::make_shared<Figure>(*whereIsFigure), whereIs, whereTo));
+
 	setPriorityOfMove();
 
+	checkGameRules();
+}
+
+bool Game::isBeatenField(const Figure& figure)
+{
+	if (figure.getName() == NameOfFigures::Pawn && m_stepHistory.getLast()->getMoveFigure()->getName() == NameOfFigures::Pawn)
+	{
+		auto pawn = m_stepHistory.getLast()->getMoveFigure();
+		auto startPosition = m_stepHistory.getLast()->getStartPosition();
+		auto endPosition = m_stepHistory.getLast()->getEndPosition();
+
+		if (startPosition.x == endPosition.x && std::abs(static_cast<int>(startPosition.y) - static_cast<int>(endPosition.y)) == PawnSteps::kLong)
+		{
+			if (endPosition.y == figure.getPosition().y && std::abs(static_cast<int>(endPosition.x) - static_cast<int>(figure.getPosition().x)) == 1)
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+FigurePosition Game::getBeatenField(const FigurePosition& startPosition, const FigurePosition& endPosition)
+{
+	auto potentialAttackingCell = endPosition.y > startPosition.y ?
+		FigurePosition({ endPosition.x, startPosition.y + 1 }) :
+		FigurePosition({ endPosition.x, startPosition.y - 1 });;
+
+	return potentialAttackingCell;
+}
+
+void Game::checkGameRules()
+{
 	if (GameRules::isCheckmate(m_gameBoard, m_priorityOfMove))
 	{
 		if (m_priorityOfMove != FigureColor::White)
@@ -173,36 +209,7 @@ void Game::move(FigurePosition& whereIs, FigurePosition& whereTo)
 	}
 }
 
-bool Game::isBeatenField(const Figure& figure)
-{
-	if (figure.getName() == NameOfFigures::Pawn && m_stepHistory.getLast()->getMoveFigure()->getName() == NameOfFigures::Pawn)
-	{
-		auto pawn = m_stepHistory.getLast()->getMoveFigure();
-		auto startPosition = m_stepHistory.getLast()->getStartPosition();
-		auto endPosition = m_stepHistory.getLast()->getEndPosition();
-
-		if (startPosition.x == endPosition.x && std::abs(static_cast<int>(startPosition.y) - static_cast<int>(endPosition.y)) == PawnSteps::kLong)
-		{
-			if (endPosition.y == figure.getPosition().y && std::abs(static_cast<int>(endPosition.x) - static_cast<int>(figure.getPosition().x)) == 1)
-			{
-				return true;
-			}
-		}
-	}
-
-	return false;
-}
-
-FigurePosition Game::getBeatenField(const FigurePosition& startPosition, const FigurePosition& endPosition)
-{
-	auto potentialAttackingCell = endPosition.y > startPosition.y ?
-		FigurePosition({ endPosition.x, startPosition.y + 1 }) :
-		FigurePosition({ endPosition.x, startPosition.y - 1 });;
-
-	return potentialAttackingCell;
-}
-
-void Game::beat(FigurePosition& whereIs, FigurePosition& whereTo)
+void Game::beat(const FigurePosition& whereIs, const FigurePosition& whereTo)
 {
 	auto whereIsFigure = m_gameBoard.findFigureByPosition(whereIs);
 	auto whereToFigure = m_gameBoard.findFigureByPosition(whereTo);
@@ -266,36 +273,108 @@ void Game::beat(FigurePosition& whereIs, FigurePosition& whereTo)
 
 	setPriorityOfMove();
 
-	if (GameRules::isCheckmate(m_gameBoard, m_priorityOfMove))
+	checkGameRules();
+}
+
+void Game::castle(const FigurePosition& whereIs, const FigurePosition& whereTo)
+{
+	auto whereIsFigure = m_gameBoard.findFigureByPosition(whereIs);
+	auto whereToFigure = m_gameBoard.findFigureByPosition(whereTo);
+
+	if (whereIsFigure == m_gameBoard.getFigures().end() || whereToFigure == m_gameBoard.getFigures().end())
 	{
-		if (m_priorityOfMove != FigureColor::White)
+		throw std::runtime_error("Incorrect castling!");
+	}
+
+	if ((*whereIsFigure).getColor() != m_priorityOfMove || (*whereToFigure).getColor() != m_priorityOfMove)
+	{
+		throw std::runtime_error("Incorrect castling!");
+	}
+
+	if ((*whereIsFigure).getName() != NameOfFigures::King || (*whereToFigure).getName() != NameOfFigures::Rook)
+	{
+		throw std::runtime_error("Incorrect figures for castling!");
+	}
+
+	if (m_stepHistory.isStep(whereIs) || m_stepHistory.isStep(whereTo))
+	{
+		throw std::runtime_error("Figures have already changed position!");
+	}
+
+	if (whereIs.x < whereTo.x)
+	{
+		for (auto x = whereIs.x + 1; x < whereTo.x; ++x)
 		{
-			std::cout << kWhiteWinMessage << std::endl;
-			std::cout << kCongratulations << " " << m_firstPlayer.getName() << std::endl;
+			if (m_gameBoard.findFigureByPosition({ x, whereIs.y }) != m_gameBoard.getFigures().end())
+			{
+				throw std::runtime_error("Incorrect castling!");
+			}
 		}
-		else
+
+		for (auto x = whereIs.x + 1; x < whereTo.x; ++x)
 		{
-			std::cout << kBlackWinMessage << std::endl;
-			std::cout << kCongratulations << " " << m_firstPlayer.getName() << std::endl;
+			GameBoard sandbox(m_gameBoard.getFigures());
+			sandbox.moveFigure(whereIs, { x, whereIs.y });
+
+			if (GameRules::isCheck(sandbox, whereIsFigure->getColor()))
+			{
+				throw std::runtime_error("Incorrect castling!");
+			}
 		}
-		finish();
 
-		return;
+		FigurePosition kingNewPosition = { whereIs.x + 2, whereIs.y };
+		FigurePosition rookNewPosition = { whereIs.x + 1, whereIs.y };
+
+		m_stepHistory.addStep(std::make_shared<CastlingStep>(
+			std::make_shared<Figure>(*whereIsFigure),
+			std::make_shared<Figure>(*whereToFigure),
+			whereIs,
+			kingNewPosition,
+			whereTo,
+			rookNewPosition));
+
+		m_gameBoard.moveFigure(whereIs, kingNewPosition);
+		m_gameBoard.moveFigure(whereTo, rookNewPosition);
 	}
-
-	if (GameRules::isStalemate(m_gameBoard, m_priorityOfMove))
+	else
 	{
-		std::cout << kStalemateMessage << std::endl;
+		for (auto x = whereIs.x - 1; x > whereTo.x; --x)
+		{
+			if (m_gameBoard.findFigureByPosition({ x, whereIs.y }) != m_gameBoard.getFigures().end())
+			{
+				throw std::runtime_error("Incorrect castling!");
+			}
+		}
 
-		finish();
+		for (auto x = whereIs.x - 1; x > whereTo.x; --x)
+		{
+			GameBoard sandbox(m_gameBoard.getFigures());
+			sandbox.moveFigure(whereIs, { x, whereIs.y });
 
-		return;
+			if (GameRules::isCheck(sandbox, whereIsFigure->getColor()))
+			{
+				throw std::runtime_error("Incorrect castling!");
+			}
+		}
+
+		FigurePosition kingNewPosition = { whereIs.x - 2, whereIs.y };
+		FigurePosition rookNewPosition = { whereIs.x - 1, whereIs.y };
+
+		m_stepHistory.addStep(std::make_shared<CastlingStep>(
+			std::make_shared<Figure>(*whereIsFigure),
+			std::make_shared<Figure>(*whereToFigure),
+			whereIs,
+			kingNewPosition,
+			whereTo,
+			rookNewPosition));
+
+		m_gameBoard.moveFigure(whereIs, kingNewPosition);
+		m_gameBoard.moveFigure(whereTo, rookNewPosition);
 	}
 
-	if (GameRules::isCheck(m_gameBoard, m_priorityOfMove))
-	{
-		std::cout << kCheckMessage << std::endl;
-	}
+	setPriorityOfMove();
+
+	checkGameRules();
 }
 
 void Game::printGame() const

@@ -20,13 +20,15 @@ public:
 	void finish();
 	void setPriorityOfMove();
 
-	void move(FigurePosition& whereIs, FigurePosition& whereTo);
-	void beat(FigurePosition& whereIs, FigurePosition& whereTo);
+	void move(const FigurePosition& whereIs, const FigurePosition& whereTo);
+	void beat(const FigurePosition& whereIs, const FigurePosition& whereTo);
+	void castle(const FigurePosition& whereIs, const FigurePosition& whereTo);
 
 private:
 	void printGame() const;
 	bool isBeatenField(const Figure& figure);
 	FigurePosition getBeatenField(const FigurePosition& startPosition, const FigurePosition& endPosition);
+	void checkGameRules();
 
 private:
 	std::unique_ptr<ICommandHandler> m_commandHandler;

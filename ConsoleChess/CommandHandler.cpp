@@ -11,6 +11,7 @@ const std::string kFinishCommandMessage = " - to finish game and exit;";
 const std::string kMoveCommandMessage = " - to move figure (example: " + Commands::move + " b2 b4);";
 const std::string kBeatCommandMessage = " - to beat enemy figure (example: " + Commands::beat + " b2 b4);";
 const std::string kRestartCommandMessage = " - to restart game;";
+const std::string kCastleCommandMessage = " - to castle king (example: " + Commands::castle + "e1 h1);";
 
 CommandHandler::CommandHandler(Game& game) : m_game(game)
 {
@@ -74,6 +75,29 @@ void CommandHandler::handle(const std::string& command)
 		return;
 	}
 
+	if (params[0] == Commands::castle)
+	{
+		if (params.size() != (Commands::kMoveParams + 1))
+		{
+			std::cout << Commands::errorInParams << std::endl;
+			return;
+		}
+
+		try
+		{
+			auto whereIs = convertToFigurePosition(params[1]);
+			auto whereTo = convertToFigurePosition(params[2]);
+
+			m_game.castle(whereIs, whereTo);
+		}
+		catch (const std::exception & ex)
+		{
+			std::cout << ex.what() << std::endl;
+		}
+
+		return;
+	}
+
 	if (params[0] == Commands::beat)
 	{
 		if (params.size() != (Commands::kBeatParams + 1))
@@ -108,6 +132,7 @@ void CommandHandler::printCommands() const
 	std::cout << Commands::beat << kBeatCommandMessage << std::endl;
 	std::cout << Commands::finish << kFinishCommandMessage << std::endl;
 	std::cout << Commands::restart << kRestartCommandMessage << std::endl;
+	std::cout << Commands::castle << kCastleCommandMessage << std::endl;
 }
 
 FigurePosition CommandHandler::convertToFigurePosition(std::string& str)
