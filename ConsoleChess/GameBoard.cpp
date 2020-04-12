@@ -3,7 +3,8 @@
 
 #include <iostream>
 
-const std::string kIncorrectTraceMessage = "Incorrect trace!";
+const std::string kIncorrectTraceError = "Incorrect trace!";
+const std::string kGameWithoutKingError = "Game without king!";
 
 GameBoard::GameBoard()
 {
@@ -13,6 +14,12 @@ GameBoard::GameBoard()
 
 GameBoard::GameBoard(std::unique_ptr<std::vector<Figure>> figures) : m_figures(std::move(figures))
 {
+	updateFigureTraces();
+}
+
+GameBoard::GameBoard(const std::vector<Figure>& figures)
+{
+	m_figures = std::make_unique<std::vector<Figure>>(figures);
 	updateFigureTraces();
 }
 
@@ -65,14 +72,31 @@ std::shared_ptr<std::vector<FigurePosition>> GameBoard::getDependentOnOtherFigur
 
 	if (figure.getName() == NameOfFigures::Knight)
 	{
-		return trace;
+		for (auto position : *trace)
+		{
+			if (isFigureOnPosition(position))
+			{
+				if (findFigureByPosition(position)->getColor() != figure.getColor())
+				{
+					result->push_back(position);
+				}
+			}
+		}
+
+		return result;
 	}
 
 	for (auto position : *trace)
 	{
-		if (!isFigureOnTrace(figure.getPosition(), position))
+		if (isFigureOnPosition(position))
 		{
-			result->push_back(position);
+			if (findFigureByPosition(position)->getColor() != figure.getColor())
+			{
+				if (!isFigureOnTrace(figure.getPosition(), position))
+				{
+					result->push_back(position);
+				}
+			}
 		}
 	}
 
@@ -97,6 +121,32 @@ const std::vector<FigurePosition>& GameBoard::getWhiteFigureBeatTraces() const
 const std::vector<FigurePosition>& GameBoard::getBlackFigureBeatTraces() const
 {
 	return m_blackFigureBeatTraces;
+}
+
+const FigurePosition& GameBoard::getKingPosition(const FigureColor& color) const
+{
+	std::string indicator;
+
+	if (color == FigureColor::White)
+	{
+		indicator += ColorIndicator::kWhiteFigureIndicator;
+	}
+	else
+	{
+		indicator += ColorIndicator::kBlackFigureIndicator;
+	}
+
+	indicator += NameOfFigures::King;
+
+	for (auto figure : *m_figures)
+	{
+		if (figure.getIndicator() == indicator)
+		{
+			return figure.getPosition();
+		}
+	}
+
+	throw std::runtime_error(kGameWithoutKingError);
 }
 
 std::vector<Figure>::iterator GameBoard::findFigureByPosition(const FigurePosition& position)
@@ -137,12 +187,14 @@ void GameBoard::moveFigure(const FigurePosition& whereIs, const FigurePosition& 
 	{
 		figureIter->setPosition(whereTo);
 	}
+
+	updateFigureTraces();
 }
 
 void GameBoard::beatFigure(const FigurePosition& whereIs, const FigurePosition& whereTo)
 {
 	auto moveFigureIter = findFigureByPosition(whereIs);
-	auto beatFigureIter = findFigureByPosition(whereIs);
+	auto beatFigureIter = findFigureByPosition(whereTo);
 
 	if (moveFigureIter == m_figures->end() || beatFigureIter == m_figures->end())
 	{
@@ -151,6 +203,8 @@ void GameBoard::beatFigure(const FigurePosition& whereIs, const FigurePosition& 
 
 	moveFigureIter->setPosition(whereTo);
 	removeFigure(beatFigureIter);
+
+	updateFigureTraces();
 }
 
 void GameBoard::draw() const
@@ -230,7 +284,7 @@ bool GameBoard::isFigureOnTrace(const FigurePosition& whereIs, const FigurePosit
 		return isFigureOnDiagonal(whereIs, whereTo);
 	}
 
-	throw std::runtime_error(kIncorrectTraceMessage);
+	throw std::runtime_error(kIncorrectTraceError);
 }
 
 void GameBoard::removeFigure(std::vector<Figure>::iterator elementIter)
@@ -287,7 +341,7 @@ bool GameBoard::isFigureOnDiagonal(const FigurePosition& whereIs, const FigurePo
 	}
 	else
 	{
-		for (auto x = from.x + 1, y = from.y + 1; FigurePosition({x,y}) != to; ++x, ++y)
+		for (auto x = from.x + 1, y = from.y + 1; FigurePosition({ x,y }) != to; ++x, ++y)
 		{
 			if (isFigureOnPosition({ x, y }))
 			{

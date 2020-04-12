@@ -147,6 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BeatStep.cpp" />
+    <ClCompile Include="CastlingStep.cpp" />
     <ClCompile Include="CommandHandler.cpp" />
     <ClCompile Include="ConsoleChess.cpp" />
     <ClCompile Include="Figure.cpp" />
@@ -158,6 +160,7 @@
     <ClCompile Include="KingMoveBehavior.cpp" />
     <ClCompile Include="KnightBeatBehavior.cpp" />
     <ClCompile Include="KnightMoveBehavior.cpp" />
+    <ClCompile Include="MoveStep.cpp" />
     <ClCompile Include="PawnBeatBehavior.cpp" />
     <ClCompile Include="PawnMoveBehavior.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -171,6 +174,8 @@
     <ClCompile Include="StepHistory.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BeatStep.h" />
+    <ClInclude Include="CastlingStep.h" />
     <ClInclude Include="CommandHandler.h" />
     <ClInclude Include="Figure.h" />
     <ClInclude Include="FigureColor.h" />
@@ -187,6 +192,7 @@
     <ClInclude Include="KingMoveBehavior.h" />
     <ClInclude Include="KnightBeatBehavior.h" />
     <ClInclude Include="KnightMoveBehavior.h" />
+    <ClInclude Include="MoveStep.h" />
     <ClInclude Include="PawnBeatBehavior.h" />
     <ClInclude Include="PawnMoveBehavior.h" />
     <ClInclude Include="Player.h" />

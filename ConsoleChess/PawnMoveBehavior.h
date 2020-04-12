@@ -4,6 +4,12 @@
 
 #include "IFigureMoveBehavior.h"
 
+namespace PawnSteps
+{
+	constexpr int kShort = 1;
+	constexpr int kLong = 2;
+}
+
 class PawnMoveBehavior : public IFigureMoveBehavior
 {
 public:

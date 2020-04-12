@@ -1,22 +1,25 @@
 #include "Step.h"
 
 Step::Step(std::shared_ptr<Figure> moveFigure,
-	std::shared_ptr<Figure> beatFigure,
 	const FigurePosition& startPosition,
 	const FigurePosition& endPosition) :
 	m_moveFigure(moveFigure),
-	m_beatFigure(beatFigure),
 	m_startPosition(startPosition),
 	m_endPosition(endPosition)
 {
 }
 
-void Step::undo(GameBoard& gameBoard)
+const FigurePosition& Step::getStartPosition() const
 {
-	gameBoard.moveFigure(m_endPosition, m_startPosition);
+	return m_startPosition;
+}
 
-	if (m_beatFigure != nullptr)
-	{
-		gameBoard.addFigureOnBoard(*m_beatFigure);
-	}
+const FigurePosition& Step::getEndPosition() const
+{
+	return m_endPosition;
+}
+
+std::shared_ptr<Figure> Step::getMoveFigure() const
+{
+	return m_moveFigure;
 }

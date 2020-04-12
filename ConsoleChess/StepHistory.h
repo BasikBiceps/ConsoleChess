@@ -1,5 +1,5 @@
 #pragma once
-#include <stack>
+#include <vector>
 
 #include "Step.h"
 #include "GameBoard.h"
@@ -7,13 +7,16 @@
 class StepHistory
 {
 public:
-	std::stack<Step>& getSteps();
+	std::vector<std::shared_ptr<Step>>& getSteps();
 
-	void addStep(Step& step);
+	bool isStep(const FigurePosition& startPosition);
+	std::shared_ptr<Step> getLast();
+
+	void addStep(std::shared_ptr<Step> step);
 	void reset();
 	void undoLastStep(GameBoard& gameBoard);
 
 private:
-	std::stack<Step> m_steps;
+	std::vector<std::shared_ptr<Step>> m_steps;
 };
 

@@ -9,15 +9,17 @@ class Step
 {
 public:
 	Step(std::shared_ptr<Figure> moveFigure,
-		std::shared_ptr<Figure> beatFigure,
 		const FigurePosition& startPosition,
 		const FigurePosition& endPosition);
 
-	void undo(GameBoard& gameBoard);
+	const FigurePosition& getStartPosition() const;
+	const FigurePosition& getEndPosition() const;
+	std::shared_ptr<Figure> getMoveFigure() const;
 
-private:
+	virtual void undo(GameBoard& gameBoard) = 0;
+
+protected:
 	std::shared_ptr<Figure> m_moveFigure;
-	std::shared_ptr<Figure> m_beatFigure;
 	FigurePosition m_startPosition;
 	FigurePosition m_endPosition;
 };

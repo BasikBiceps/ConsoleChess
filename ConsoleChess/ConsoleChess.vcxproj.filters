@@ -176,6 +176,15 @@
     <ClCompile Include="KnightMoveBehavior.cpp">
       <Filter>Figures\FigureBehavior\Knight\sources</Filter>
     </ClCompile>
+    <ClCompile Include="MoveStep.cpp">
+      <Filter>StepHistory\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="BeatStep.cpp">
+      <Filter>StepHistory\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="CastlingStep.cpp">
+      <Filter>StepHistory\sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IDrawn.h">
@@ -258,6 +267,15 @@
     </ClInclude>
     <ClInclude Include="KnightMoveBehavior.h">
       <Filter>Figures\FigureBehavior\Knight\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveStep.h">
+      <Filter>StepHistory\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="BeatStep.h">
+      <Filter>StepHistory\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CastlingStep.h">
+      <Filter>StepHistory\headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

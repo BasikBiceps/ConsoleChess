@@ -3,9 +3,6 @@
 #include "Figure.h"
 #include "GameBoardConfiguration.h"
 
-const std::string kWhiteFigureIndicator = "W";
-const std::string kBlackFigureIndicator = "B";
-
 Figure::Figure(const std::string& name,
 	const FigurePosition& position,
 	const FigureColor& color,
@@ -30,11 +27,11 @@ std::string Figure::getIndicator() const
 
 	if (m_color == FigureColor::White)
 	{
-		colorIndicator = kWhiteFigureIndicator;
+		colorIndicator = ColorIndicator::kWhiteFigureIndicator;
 	}
 	else
 	{
-		colorIndicator = kBlackFigureIndicator;
+		colorIndicator = ColorIndicator::kBlackFigureIndicator;
 	}
 
 	return colorIndicator + m_name;

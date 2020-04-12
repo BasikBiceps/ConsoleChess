@@ -16,20 +16,20 @@ std::shared_ptr<std::vector<FigurePosition>> PawnMoveBehavior::move(const Figure
 
 	if (color == FigureColor::White)
 	{
-		resultTrace->push_back({ whereIs.x, whereIs.y + 1 });
+		resultTrace->push_back({ whereIs.x, whereIs.y + PawnSteps::kShort });
 
 		if (whereIs.y == kWhitePawnYStartPosition)
 		{
-			resultTrace->push_back({ whereIs.x, whereIs.y + 2 });
+			resultTrace->push_back({ whereIs.x, whereIs.y + PawnSteps::kLong });
 		} 
 	} 
 	else
 	{
-		resultTrace->push_back({ whereIs.x, whereIs.y - 1 });
+		resultTrace->push_back({ whereIs.x, whereIs.y - PawnSteps::kShort });
 
 		if (whereIs.y == kBlackPawnYStartPosition)
 		{
-			resultTrace->push_back({ whereIs.x, whereIs.y - 2 });
+			resultTrace->push_back({ whereIs.x, whereIs.y - PawnSteps::kLong });
 		}
 	}
 

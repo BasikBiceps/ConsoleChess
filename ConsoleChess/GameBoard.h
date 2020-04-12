@@ -11,6 +11,7 @@ class GameBoard : public IDrawn
 public:
 	GameBoard();
 	GameBoard(std::unique_ptr<std::vector<Figure>> figures);
+	GameBoard(const std::vector<Figure>& figures);
 
 	void addFigureOnBoard(Figure& figure);
 
@@ -21,6 +22,7 @@ public:
 	const std::vector<FigurePosition>& getBlackFigureMoveTraces() const;
 	const std::vector<FigurePosition>& getWhiteFigureBeatTraces() const;
 	const std::vector<FigurePosition>& getBlackFigureBeatTraces() const;
+	const FigurePosition& getKingPosition(const FigureColor& color) const;
 	
 	std::vector<Figure>::iterator findFigureByPosition(const FigurePosition& position);
 	std::vector<Figure>::const_iterator findFigureByPosition(const FigurePosition& position) const;

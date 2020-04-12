@@ -18,9 +18,15 @@ public:
 	void start();
 	void restart();
 	void finish();
+	void setPriorityOfMove();
 
 	void move(FigurePosition& whereIs, FigurePosition& whereTo);
 	void beat(FigurePosition& whereIs, FigurePosition& whereTo);
+
+private:
+	void printGame() const;
+	bool isBeatenField(const Figure& figure);
+	FigurePosition getBeatenField(const FigurePosition& startPosition, const FigurePosition& endPosition);
 
 private:
 	std::unique_ptr<ICommandHandler> m_commandHandler;
