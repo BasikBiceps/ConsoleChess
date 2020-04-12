@@ -21,6 +21,21 @@ void Figure::setPosition(const FigurePosition& position)
 	m_position = position;
 }
 
+void Figure::setName(const std::string& name)
+{
+	m_name = name;
+}
+
+void Figure::setBeatBehavior(std::shared_ptr<IFigureBeatBehavior> beatBehavior)
+{
+	m_beatBehavior = beatBehavior;
+}
+
+void Figure::setMoveBehavior(std::shared_ptr<IFigureMoveBehavior> moveBehavior)
+{
+	m_moveBehavior = moveBehavior;
+}
+
 std::string Figure::getIndicator() const
 {
 	std::string colorIndicator;

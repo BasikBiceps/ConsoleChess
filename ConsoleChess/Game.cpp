@@ -7,6 +7,7 @@
 #include "BeatStep.h"
 #include "PawnMoveBehavior.h"
 #include "CastlingStep.h"
+#include "GameBoardConfiguration.h"
 
 const std::string kGameResetMessage = "The game was reset.";
 const std::string kGameOverMessage = "The game was over.";
@@ -21,6 +22,13 @@ const std::string kWrongPlayerMoveMessage = "Wrong player move!";
 const std::string kWrongStepMessage = "Incorrect step!";
 const std::string kWrongStepWithCheckMessage = "Incorrect step with check!";
 const std::string kMoveEmptyCell = "An attempt to resemble an empty!";
+
+const std::string kIncorrectCastling = "Incorrect castling!";
+const std::string kIncorrectFigureForCastling = "Incorrect figure for castling!";
+const std::string kFiguresHaveAlreadyChangedPosition = "Figures have already changed position!";
+
+const std::string kIncorrectFigureForTurn = "Incorrect figure for turn!";
+const std::string kIncorrectStepForTurn = "Incorrect step for turn!";
 
 const std::string kWhiteWinMessage = "Checkmate! White won!";
 const std::string kBlackWinMessage = "Checkmate! Black won!";
@@ -283,22 +291,22 @@ void Game::castle(const FigurePosition& whereIs, const FigurePosition& whereTo)
 
 	if (whereIsFigure == m_gameBoard.getFigures().end() || whereToFigure == m_gameBoard.getFigures().end())
 	{
-		throw std::runtime_error("Incorrect castling!");
+		throw std::runtime_error(kIncorrectCastling);
 	}
 
 	if ((*whereIsFigure).getColor() != m_priorityOfMove || (*whereToFigure).getColor() != m_priorityOfMove)
 	{
-		throw std::runtime_error("Incorrect castling!");
+		throw std::runtime_error(kIncorrectCastling);
 	}
 
 	if ((*whereIsFigure).getName() != NameOfFigures::King || (*whereToFigure).getName() != NameOfFigures::Rook)
 	{
-		throw std::runtime_error("Incorrect figures for castling!");
+		throw std::runtime_error(kIncorrectFigureForCastling);
 	}
 
 	if (m_stepHistory.isStep(whereIs) || m_stepHistory.isStep(whereTo))
 	{
-		throw std::runtime_error("Figures have already changed position!");
+		throw std::runtime_error(kFiguresHaveAlreadyChangedPosition);
 	}
 
 	if (whereIs.x < whereTo.x)
@@ -307,7 +315,7 @@ void Game::castle(const FigurePosition& whereIs, const FigurePosition& whereTo)
 		{
 			if (m_gameBoard.findFigureByPosition({ x, whereIs.y }) != m_gameBoard.getFigures().end())
 			{
-				throw std::runtime_error("Incorrect castling!");
+				throw std::runtime_error(kIncorrectCastling);
 			}
 		}
 
@@ -318,7 +326,7 @@ void Game::castle(const FigurePosition& whereIs, const FigurePosition& whereTo)
 
 			if (GameRules::isCheck(sandbox, whereIsFigure->getColor()))
 			{
-				throw std::runtime_error("Incorrect castling!");
+				throw std::runtime_error(kIncorrectCastling);
 			}
 		}
 
@@ -342,7 +350,7 @@ void Game::castle(const FigurePosition& whereIs, const FigurePosition& whereTo)
 		{
 			if (m_gameBoard.findFigureByPosition({ x, whereIs.y }) != m_gameBoard.getFigures().end())
 			{
-				throw std::runtime_error("Incorrect castling!");
+				throw std::runtime_error(kIncorrectCastling);
 			}
 		}
 
@@ -353,7 +361,7 @@ void Game::castle(const FigurePosition& whereIs, const FigurePosition& whereTo)
 
 			if (GameRules::isCheck(sandbox, whereIsFigure->getColor()))
 			{
-				throw std::runtime_error("Incorrect castling!");
+				throw std::runtime_error(kIncorrectCastling);
 			}
 		}
 
@@ -371,6 +379,72 @@ void Game::castle(const FigurePosition& whereIs, const FigurePosition& whereTo)
 		m_gameBoard.moveFigure(whereIs, kingNewPosition);
 		m_gameBoard.moveFigure(whereTo, rookNewPosition);
 	}
+
+	setPriorityOfMove();
+
+	checkGameRules();
+}
+
+void Game::turnPawn(const FigurePosition& whereIs, const FigurePosition& whereTo, const std::string& name)
+{
+	auto whereIsFigure = m_gameBoard.findFigureByPosition(whereIs);
+	auto whereToFigure = m_gameBoard.findFigureByPosition(whereTo);
+
+	if (whereIsFigure == m_gameBoard.getFigures().end())
+	{
+		throw std::runtime_error(kMoveEmptyCell);
+	}
+
+	if ((*whereIsFigure).getColor() != m_priorityOfMove)
+	{
+		throw std::runtime_error(kWrongPlayerMoveMessage);
+	}
+
+	if (name == NameOfFigures::King)
+	{
+		throw std::runtime_error(kIncorrectFigureForTurn);
+	}
+
+	if (whereTo.y != (GameBoardConfiguration::kBoardHeight - 1) && whereTo.y != 0)
+	{
+		throw std::runtime_error(kIncorrectStepForTurn);
+	}
+
+	if (whereIsFigure->getName() != NameOfFigures::Pawn)
+	{
+		throw std::runtime_error(kIncorrectFigureForTurn);
+	}
+
+	if (whereToFigure != m_gameBoard.getFigures().end())
+	{
+		throw std::runtime_error(kPositionIsOccupiedMessage);
+	}
+
+	auto posibleTrace = m_gameBoard.getDependentOnOtherFiguresFigureMoveTrace(*whereIsFigure);
+
+	if (std::find(posibleTrace->begin(), posibleTrace->end(), whereTo) == posibleTrace->end())
+	{
+		throw std::runtime_error(kWrongStepMessage);
+	}
+
+	GameBoard sandBox(m_gameBoard.getFigures());
+
+	sandBox.moveFigure(whereIs, whereTo);
+
+	if (GameRules::isCheck(sandBox, m_priorityOfMove))
+	{
+		throw std::runtime_error(kWrongStepWithCheckMessage);
+	}
+
+	std::shared_ptr<IFigureBeatBehavior> newBeatBehavior = GameBoardConfiguration::createBeatBehavior(name);
+	std::shared_ptr<IFigureMoveBehavior> newMoveBehavior = GameBoardConfiguration::createMoveBehavior(name);
+
+	m_gameBoard.moveFigure(whereIs, whereTo);
+	m_stepHistory.addStep(std::make_shared<MoveStep>(std::make_shared<Figure>(*whereIsFigure), whereIs, whereTo));
+
+	whereIsFigure->setName(name);
+	whereIsFigure->setBeatBehavior(newBeatBehavior);
+	whereIsFigure->setMoveBehavior(newMoveBehavior);
 
 	setPriorityOfMove();
 

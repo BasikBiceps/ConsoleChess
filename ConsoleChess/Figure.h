@@ -28,6 +28,9 @@ public:
 		   std::shared_ptr<IFigureMoveBehavior> moveBehavior);
 	
 	void setPosition(const FigurePosition& position);
+	void setName(const std::string& name);
+	void setBeatBehavior(std::shared_ptr<IFigureBeatBehavior> beatBehavior);
+	void setMoveBehavior(std::shared_ptr<IFigureMoveBehavior> moveBehavior);
 
 	std::string getIndicator() const;
 	const std::string& getName() const;

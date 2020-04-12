@@ -80,6 +80,66 @@ std::string GameBoardConfiguration::getEmptyCell()
 	return kEmptyCell;
 }
 
+std::shared_ptr<IFigureBeatBehavior> GameBoardConfiguration::createBeatBehavior(const std::string& name)
+{
+	if (name == NameOfFigures::Bishop)
+	{
+		return std::make_shared<BishopBeatBehavior>();
+	}
+	if (name == NameOfFigures::Knight)
+	{
+		return std::make_shared<KnightBeatBehavior>();
+	}
+	if (name == NameOfFigures::Rook)
+	{
+		return std::make_shared<RookBeatBehavior>();
+	}
+	if (name == NameOfFigures::Queen)
+	{
+		return std::make_shared<QueenBeatBehavior>();
+	}
+	if (name == NameOfFigures::Pawn)
+	{
+		return std::make_shared<PawnBeatBehavior>();
+	}
+	if (name == NameOfFigures::King)
+	{
+		return std::make_shared<KingBeatBehavior>();
+	}
+
+	return nullptr;
+}
+
+std::shared_ptr<IFigureMoveBehavior> GameBoardConfiguration::createMoveBehavior(const std::string& name)
+{
+	if (name == NameOfFigures::Bishop)
+	{
+		return std::make_shared<BishopMoveBehavior>();
+	}
+	if (name == NameOfFigures::Knight)
+	{
+		return std::make_shared<KnightMoveBehavior>();
+	}
+	if (name == NameOfFigures::Rook)
+	{
+		return std::make_shared<RookMoveBehavior>();
+	}
+	if (name == NameOfFigures::Queen)
+	{
+		return std::make_shared<QueenMoveBehavior>();
+	}
+	if (name == NameOfFigures::Pawn)
+	{
+		return std::make_shared<PawnMoveBehavior>();
+	}
+	if (name == NameOfFigures::King)
+	{
+		return std::make_shared<KingMoveBehavior>();
+	}
+
+	return nullptr;
+}
+
 void GameBoardConfiguration::createRooks(std::vector<Figure>& figures)
 {
 	figures.push_back(Figure(NameOfFigures::Rook,

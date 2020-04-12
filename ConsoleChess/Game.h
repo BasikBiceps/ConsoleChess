@@ -23,6 +23,7 @@ public:
 	void move(const FigurePosition& whereIs, const FigurePosition& whereTo);
 	void beat(const FigurePosition& whereIs, const FigurePosition& whereTo);
 	void castle(const FigurePosition& whereIs, const FigurePosition& whereTo);
+	void turnPawn(const FigurePosition& whereIs, const FigurePosition& whereTo, const std::string& name);
 
 private:
 	void printGame() const;

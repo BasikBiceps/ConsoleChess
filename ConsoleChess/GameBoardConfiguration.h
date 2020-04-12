@@ -17,6 +17,9 @@ public:
 	static const std::size_t kBoardWidth = 8;
 	static const std::size_t kBoardHeight = 8;
 
+	static std::shared_ptr<IFigureBeatBehavior> createBeatBehavior(const std::string& name);
+	static std::shared_ptr<IFigureMoveBehavior> createMoveBehavior(const std::string& name);
+
 private:
 	static void createRooks(std::vector<Figure>& figures);
 	static void createBishops(std::vector<Figure>& figures);
