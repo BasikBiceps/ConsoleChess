@@ -9,3 +9,7 @@ This project was developed with the aim of self-learning and improving self skil
 - External libraries: only
 - Programming language: C++
 - gtest
+#### About modules
+- ConsoleChess - library module containing business and auxiliary logic
+- ConsoleChessTests - module containing business logic tests
+- ConsoleChessGame - module for executable part game
