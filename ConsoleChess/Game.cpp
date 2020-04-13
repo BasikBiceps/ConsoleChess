@@ -49,6 +49,16 @@ Game::Game(const Player& firstPlayer, const Player& secondPlayer) :
 {
 }
 
+Game::Game(const Player& firstPlayer, const Player& secondPlayer, const GameBoard& gameBoard) :
+	m_firstPlayer(firstPlayer),
+	m_secondPlayer(secondPlayer),
+	m_isPlay(true),
+	m_priorityOfMove(FigureColor::White),
+	m_commandHandler(std::make_unique<CommandHandler>(*this)),
+	m_gameBoard(gameBoard.getFigures())
+{
+}
+
 GameBoard& Game::getGameBoard()
 {
 	return m_gameBoard;
@@ -156,6 +166,11 @@ void Game::move(const FigurePosition& whereIs, const FigurePosition& whereTo)
 
 bool Game::isBeatenField(const Figure& figure)
 {
+	if (m_stepHistory.getLast() == nullptr)
+	{
+		return false;
+	}
+
 	if (figure.getName() == NameOfFigures::Pawn && m_stepHistory.getLast()->getMoveFigure()->getName() == NameOfFigures::Pawn)
 	{
 		auto pawn = m_stepHistory.getLast()->getMoveFigure();

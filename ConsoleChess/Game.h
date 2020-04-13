@@ -10,6 +10,7 @@ class Game
 {
 public:
 	Game(const Player& firstPlayer, const Player& secondPlayer);
+	Game(const Player& firstPlayer, const Player& secondPlayer, const GameBoard& gameBoard);
 
 	GameBoard& getGameBoard();
 	StepHistory& getStepHistory();
@@ -40,4 +41,3 @@ private:
 	FigureColor m_priorityOfMove;
 	bool m_isPlay;
 };
-
