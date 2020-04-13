@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FigureTest.cpp" />
+    <ClCompile Include="GameBoardTest.cpp" />
     <ClCompile Include="GameRulesTest.cpp" />
     <ClCompile Include="GameTest.cpp" />
     <ClCompile Include="pch.cpp">
